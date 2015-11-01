@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Cheatsheet: SAS ODS &middot; Code As Manuscript
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class="theme-base-0d">
+
+    <div class="sidebar">
+  <div class="container"> <!--sidebar-sticky? I deleted it from here-->
+    <div class="sidebar-about">
+      <h2>
+        <a href="">
+          Code As Manuscript
+        </a>
+      </h2>
+      <p class="lead">Writing your code and analyses as if <i>it</i> was the manuscript.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            
+              <a class="sidebar-nav-item" href="/">About</a>
+            
+          
+        
+      
+        
+          
+            
+              <a class="sidebar-nav-item" href="/gps/">GPS</a>
+            
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            
+              <a class="sidebar-nav-item" href="/lessons/">Lessons</a>
+            
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/codeasmanuscript">GitHub</a>
+    </nav>
+
+    <p>&copy; 2015. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Cheatsheet: SAS ODS</h1>
+  <p>The Output Delivery System (ODS) in SAS allows results from a <code>proc</code>
+to be output into a data format so that if you wanted you could
+customize the results in a datastep and eventually output it into a
+file.  This is an incredibly useful tool as you can make your analysis
+easier, make it easier to input the results into a manuscript or
+report, and make your research more reproducible and transparent.
+Below are some commands that will help you figure out what to output,
+how to customize the results, and how to save them to a file.</p>
+
+<h1 id="sas-ods-commands-some-useful-or-common-ones">SAS ODS commands: Some useful or common ones</h1>
+
+<h2 id="ods-trace-on--ods-trace-off"><code>ods trace on; ... ods trace off;</code></h2>
+
+<blockquote>
+  <p>When you run a chunk of code with the <code>ods trace on;</code> at the start,
+a <code>proc</code> in the middle, and <code>ods trace off;</code> at the end, the ODS
+objects within the <code>proc</code> are printed in the log file/window.  You
+can then use that object to output just the object.  The name of the
+ODS object changes depending on what statements are used in the
+<code>proc</code> command.  For instance, in <code>proc anova</code> if the <code>lsmeans</code>
+statement is provided, <code>ods trace on;</code> will show an object that is
+named <code>LSMeans</code>.</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>ods trace on;
+proc means data=sashelp.fish;
+run;
+ods trace off;
+
+/** Comment: The output from this code is: */
+Output Added:
+-------------
+Name:       Summary
+Label:      Summary statistics
+Template:   base.summary
+Path:       Means.Summary
+-------------
+</code></pre>
+
+<h2 id="ods-output-ods-object-mame--custom-output-name"><code>ods output &lt;ods-object-mame&gt; = &lt;custom-output-name&gt;;</code></h2>
+
+<blockquote>
+  <p>After extracting the name of the ODS object using <code>ods trace on;</code>,
+you can then use the name of the object to output the results
+specific to the object.  For instance, the ODS object name for <code>proc
+means</code> was <code>Summary</code>.  In order to output the <code>Summary</code> object, we
+would replace it with <code>&lt;ods-object-name&gt;</code> and make our own name up
+for the output dataset (eg: <code>meansDS</code>) in the <code>&lt;custom-output-name&gt;</code>
+space.</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>proc means data=sashelp.fish;
+    ods output Summary = meansDS;
+run;
+
+proc print data=meansDS;
+run;
+</code></pre>
+
+<h2 id="ods-listing-close--ods-listing"><code>ods listing close; ... ods listing;</code></h2>
+
+<blockquote>
+  <p>Sometimes when you are outputing an ODS object you also don’t want
+SAS to output the normal results.  In this case, you can prevent SAS
+from sending output to the ‘listing’ area, either as the <code>.lst</code> file
+or the output window on the SAS editor.  That way, you can print
+only the results that <em>you</em> want to see, rather than what <em>SAS</em>
+wants you to see.</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>/** Comment: Suppress printing of output */
+ods listing close;
+proc means data=sashelp.fish;
+    ods output Summary = meansDS;
+run;
+ods listing;
+
+/** Print the specific output */
+proc print data=meansDS;
+run;
+</code></pre>
+
+<h2 id="data-new-set-old"><code>data &lt;new&gt;; set &lt;old&gt;;</code></h2>
+
+<blockquote>
+  <p>This command should be known to everyone given that, together with
+all <code>proc</code> commands, is the foundation to all SAS commands.  This
+command is included here to reinforce that the <code>ods output</code> data is
+in fact data and can be customized/wrangled.  All the commands and
+code that you use to manage your dataset can also be used to manage
+your results data (eg. <code>if .. then ..;</code>, creating new variables,
+etc).  So for instance, if you only want the probability from an
+ANOVA test, you can drop all other variables and just output the
+p-value.</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>ods listing close;
+proc glm data=sashelp.fish;
+    class Species;
+    model Height = Species / ss3;
+    ods output ModelANOVA = modelFish;
+run;
+ods listing;
+
+data modelFish;
+    set modelFish;
+    keep Dependent Source ProbF;
+run;
+
+proc print data=modelFish;
+run;
+</code></pre>
+
+<h2 id="section"><code>||</code></h2>
+
+<blockquote>
+  <p>This is the concatenate command.  It basically allows you to combine
+multiple variables and characters together.  This is especially
+useful for modifying ODS output objects so that they can be made
+into, for example, a table for a report.  For instance, if you
+wanted to make a variable that shows the mean and standard deviation
+in the form of “mean (SD)”, you can use the <code>||</code> command to achieve
+this.</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>proc means data=sashelp.fish stackods;
+    ods output Summary = meansDS;
+run;
+
+/** Comment: Edit the output results */
+data meansDS (drop=Mean StdDev);
+    set meansDS;
+    /** In this case, you take the variable 'Mean',
+        combine it using || with a space and a bracket ' ('
+        add the variable StdDev, and lastly add the closing
+        bracket */
+    rawMeanSD = Mean||' ('||
+        StdDev||')';
+    /** If you print the rawMeanSD, there are lots of digits,
+        so you can round it off using `round()` */
+    roundMeanSD = round(Mean, 0.01)||' ('||
+        round(StdDev, 0.01)||')';
+    /** ... However, after rounding, there are extra spaces
+        in the print out.  So you can use `strip()` to remove
+        extra white space. */
+    striproundMeanSD = round(Mean, 0.01)||' ('||
+        strip(round(StdDev, 0.01))||')';
+run;
+
+proc print data=meansDS;
+run;
+</code></pre>
+
+<h2 id="proc-export-"><code>proc export ...;</code></h2>
+
+<blockquote>
+  <p>To make the most of customizing the output of a <code>proc</code> into a format
+that resembles a table, it’s probably a good idea to output the
+results dataset into a file.  You can use the <code>proc export</code> command
+to save the dataset into a file of your choice.  There are in
+general four parts to the <code>proc export</code> command:</p>
+</blockquote>
+
+<ul>
+  <li><code>data=</code> is the output dataset.</li>
+  <li><code>dbms =</code> is the output format, eg ‘XLS’ or ‘CSV’.  Given the ‘csv’
+format is simply plain text, I would recommend this option.</li>
+  <li><code>outfile =</code> is the name and location of the new output file,
+eg. ‘means.csv’.</li>
+  <li><code>replace</code> tells SAS to overwrite any old file with the same name as
+the <code>outfile</code> name.</li>
+</ul>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>/** Continuing with the dataset from the previous command */
+proc export data=meansDS
+    dbms = csv
+    outfile = 'means.csv'
+    replace;
+run;
+</code></pre>
+
+
+</div>
+
+    </div>
+
+  </body>
+</html>

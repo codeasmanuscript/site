@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Cheatsheet: Git &middot; Code As Manuscript
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class="theme-base-0d">
+
+    <div class="sidebar">
+  <div class="container"> <!--sidebar-sticky? I deleted it from here-->
+    <div class="sidebar-about">
+      <h2>
+        <a href="">
+          Code As Manuscript
+        </a>
+      </h2>
+      <p class="lead">Writing your code and analyses as if <i>it</i> was the manuscript.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            
+              <a class="sidebar-nav-item" href="/">About</a>
+            
+          
+        
+      
+        
+          
+            
+              <a class="sidebar-nav-item" href="/gps/">GPS</a>
+            
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            
+              <a class="sidebar-nav-item" href="/lessons/">Lessons</a>
+            
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/codeasmanuscript">GitHub</a>
+    </nav>
+
+    <p>&copy; 2015. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Cheatsheet: Git</h1>
+  <p>Git is an amazing and very powerful tool that is useful for managing
+your projects and tools, letting you experiment and try out new things
+in your files without worrying about losing anything.  However,
+because of its power and usefulness, it can be confusing for beginners
+as 1) Git requires the use of the command line (or terminal) to run
+Git commands, and 2) there are a large number of commands and options
+available.  So, we put together the commands that are the most useful
+and most common — and the only ones you may ever use!  Also, please check out
+the <a href="/lessons/resources">resources page</a> as it has links to very useful sites
+and tutorials on learning Git.</p>
+
+<p>As well, an added benefit of using Git is you can use the amazing
+<a href="https://github.com/">GitHub</a>, a git repository hosting service, to keep an
+online backup of your project and optionally share it with the world or with
+your team.  There are increasing arguments and support for science to be more
+open and publicly accessible.  GitHub can help with getting your code and/or
+data out into the public domain.  Some of the below commands are used for
+communicating with GitHub, though they are not exclusive to GitHub.</p>
+
+<h1 id="before-using-git-initial-setup">Before using Git: Initial setup</h1>
+
+<p>This following commands should be run first before any work is done
+using Git.</p>
+
+<pre><code>git config --global user.name "Your Name"
+git config --global user.email "you@some.domain"
+git config --global color.ui "auto"
+git config --global core.editor "your_editor"
+git config --global push.default simple
+git config --list
+</code></pre>
+
+<p>These commands basically tell Git:</p>
+
+<ul>
+  <li>Who you are (<code>user.name</code>)</li>
+  <li>What your email address is (<code>user.email</code>; used when working on a
+multiple person project)</li>
+  <li>What the colour output should be after running Git commands
+(<code>color.ui</code>)</li>
+  <li>What your <strong>text</strong> editor is that you use (<code>core.editor</code>).  See
+<a href="/lessons/instructions/">our instructions</a> for more
+details about editors, but briefly:
+    <ul>
+      <li>On Windows, you will likely use
+<a href="http://en.wikipedia.org/wiki/Notepad_%28software%29">Notepad</a>
+(which comes pre-installed on Windows) or
+<a href="http://notepad-plus-plus.org/">Notepad++</a></li>
+      <li>On Mac, there is
+<a href="http://www.macupdate.com/app/mac/11009/textwrangler">TextWrangler</a>
+(which I believe comes pre-installed) or
+<a href="https://macromates.com/">TextMate</a></li>
+      <li>On Linux, it depends on which distro you use, but in general
+<a href="https://help.ubuntu.com/community/gedit">gedit</a> or
+<a href="https://wiki.archlinux.org/index.php/Nano">nano</a> usually are
+pre-installed</li>
+    </ul>
+  </li>
+  <li>How you want the push and pull default behaviour (<code>push.default</code>;
+more on this in the <a href="/lessons/github/">GitHub lesson</a>)</li>
+</ul>
+
+<h1 id="terminal-commands-good-to-know-before-knowing-git">Terminal commands (good to know before knowing Git)</h1>
+
+<h2 id="directory-terminology">Directory (terminology)</h2>
+
+<blockquote>
+  <p>A directory is the same thing as a folder.</p>
+</blockquote>
+
+<h2 id="cd-pathtodirectory"><code>cd path/to/directory</code></h2>
+
+<blockquote>
+  <p>Change the current directory/folder to another directory/folder. The little
+tilde <code>~</code> means ‘Home’, so that would be <code>/home/username/</code> for Linux,
+<code>/Users/username/</code> for Mac, and <code>C:\Users\username\</code> on Windows.</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>cd ~/Desktop # Change to the desktop
+cd /home/username/Documents/ # Change to documents.
+</code></pre>
+
+<h2 id="mkdir-directory-name"><code>mkdir directory-name/</code></h2>
+
+<blockquote>
+  <p>Make (mk) a directory (dir) that has the name <code>directory-name</code>. This can be
+any name you want it to be.</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>mkdir ~/Desktop/testing # Create a testing folder on your desktop
+mkdir playingAround/ # Make a folder in the current directory
+</code></pre>
+
+<h2 id="ls"><code>ls</code></h2>
+
+<blockquote>
+  <p>View the contents of the directory, showing files and sub-directories.</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>ls ~/ # Show contents of home
+ls -a ~/ # Show hidden and non-hidden files
+
+# List files/directories by row, indicating which is a folder
+# l = list format option
+# h = human understandable bytes option
+# F = indicate which are folders with a `/` at the end
+ls -lhF ~/
+ls -l -h -F ~/ # Same as above
+</code></pre>
+
+<h2 id="touch-filenametxt"><code>touch filename.txt</code></h2>
+
+<blockquote>
+  <p>Create an empty text file in the current directory called ‘filename.txt’.</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code># All these do the same thing.
+touch filename.txt
+touch File.txt
+touch this-is-a-file.txt
+</code></pre>
+
+<h2 id="command--filenametxt"><code>command &gt; filename.txt</code></h2>
+
+<blockquote>
+  <p>Send the output into a file (in this case called ‘filename.txt’.</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>ls -lhF &gt; filesInDirectory.txt # Send ls output to file
+echo 'This is a test' &gt; testing.txt # Send to the file
+</code></pre>
+
+<h1 id="useful-and-common-git-commands">Useful (and common) Git commands</h1>
+
+<h2 id="repository-terminology">Repository (terminology)</h2>
+
+<blockquote>
+  <p>Not a command, but is the term used to describe all the saved history of a
+directory and files for a project that are tracked by Git. Is essentially the
+hidden <code>.git/</code> directory.</p>
+</blockquote>
+
+<h2 id="git-init"><code>git init</code></h2>
+
+<blockquote>
+  <p>Tell Git to start tracking a folder by creating a git history
+repository.  This essentially tells Git to start watching your
+folder and all the files and folders within it.</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>## Comment: cd = change directory (aka folder)
+cd ~/Documents/yourprojectname/
+git init
+</code></pre>
+
+<h2 id="git-status"><code>git status</code></h2>
+
+<blockquote>
+  <p>Tell Git to list out all the activity within a folder under watch by
+Git (after using <code>git init</code>).  The status command will list all
+files or folders that have been added or changed inside the
+repository. </p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>cd ~/Documents/yourprojectname/
+git status
+</code></pre>
+
+<h2 id="git-add-files"><code>git add &lt;files&gt;</code></h2>
+
+<blockquote>
+  <p>Add the files you want Git to watch inside the history repository as
+created with <code>git init</code>.  You can specify as many or as little files
+or folders as you want.  <em>Note</em>: the add command does <strong>not</strong> save
+the files to the git history.  All the <code>git add</code> command does is
+tell Git to start watching the files and put the files into the
+“staging area” where they will next be saved to the history (see the
+below <code>git commit</code> command).</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>## Comment: cd to where files have been changed
+cd ~/Documents/yourprojectname/
+## Comment: Pretending we want to add three files
+git add foldername/newfilename1 newfilename2 foldername2/changedfile
+</code></pre>
+
+<h2 id="git-commit"><code>git commit</code></h2>
+
+<blockquote>
+  <p>Tells Git to save your <code>git add</code>‘ed files to its history.  This is
+the main purpose and use for Git.  After you commit a file(s) and
+typed out a commit message (<em>be detailed about what you did</em>!!), Git
+will save (or take a “snap shot”) of your files and put it into its
+history.  Once committed, it is saved into the history, allowing you
+to go back to that commit/save point at any time!</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>cd ~/Documents/yourprojectname/
+## Comment: You have two options...
+## Commit and let a text editor pop up so you can
+## write your commit message
+git commit
+## Comment: ... Or you can use the -m option
+git commit -m "Type out your commit message here"
+</code></pre>
+
+<h2 id="git-log"><code>git log</code></h2>
+
+<blockquote>
+  <p>Displays the history of your repository and the messages you added
+to each commit, as well as the date of the change, and who made the
+change.  This is analogous to a logbook for those in the basic
+science.  This is a really useful feature if you are working on a
+multi-person project or if you are coming back to a project after
+several months of not touching it and completely forgetting what you
+were doing last.  <code>git log</code> has a <em>large</em> number of options
+available that customize the appearance and the information provided
+by the log command.</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>cd ~/Documents/yourprojectname/
+git log
+</code></pre>
+
+<h2 id="git-checkout"><code>git checkout</code></h2>
+
+<blockquote>
+  <p>Allows you to go back (or forward) throughout your Git history as
+well as to change branches (see the <code>git branch</code> command below).  If
+you wanted to go back a few commits, you would run <code>git checkout
+commitnumber</code>.  You get the commit number by running git log and
+using the first few letters and numbers of the commit.  We will
+likely show an example in the workshop.</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>## Comment: Go back to a previous commit (use the commit hash)
+git checkout d45gfd3 ## Example commit hash, found using git log
+## Comment: Go to another branch (ie: "testing")
+git checkout testing
+## Comment: Go back to your main branch ("master")
+git checkout master
+</code></pre>
+
+<h2 id="git-branch-branch-name"><code>git branch &lt;branch-name&gt;</code></h2>
+
+<blockquote>
+  <p>This is another very useful command from Git, and (I feel) one of
+its biggest strengths!  This command basically makes a branch like
+on a tree, letting you experiment with your files and statistical
+analyses without having to worry about messing around with your main
+files.  If you want to eventually bring the experimental branch into
+the “master” branch, you can use
+<a href="http://git-scm.com/book/en/v2/Git-Branching-Basic-Branching-and-Merging"><code>git merge</code></a>
+(which we will not be covering as it is a slightly more advanced
+command).</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>## Create a branch named "experiment"
+git branch experiment
+## Move to the experiment branch
+git checkout experiment
+## edit your files and save, do whatever...
+git add changedfiles
+git commit -m "Added a statistical test with different variables"
+## Move back to the master branch
+git checkout master
+## All files should be in their original state
+</code></pre>
+
+<h2 id="git-diff-commit-id-optional-files"><code>git diff &lt;commit-id (optional)&gt; &lt;file(s)&gt;</code></h2>
+
+<blockquote>
+  <p>This command tells Git to compare the contents of, at the basic
+level, two files.  These two files are by default a file you most
+recently changed (but not committed) with the same file’s content in
+the history.  However, you can also compare a file across different
+commits in the history.  <code>git diff</code> shows the differences between
+the files by highlighting in red deletions and in green additions to
+the file.  This is useful if you forgot what you changed in the file
+and you are going to commit the file into the history, using it to
+help you write a better commit messages.</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>## Compare a recently changed file with its recent
+## commit history
+git diff filename
+## Compare a file across two commits (using commit hashes)
+## Usage: git diff hash1..hash2 file (hashes are *very* unique)
+git diff 54gfd..75g84 filename
+</code></pre>
+
+<h1 id="git-commands-for-dealing-with-githubother-hosting-services">Git commands for dealing with GitHub/other hosting services</h1>
+
+<h2 id="git-clone-repository-name"><code>git clone &lt;repository-name&gt;</code></h2>
+
+<blockquote>
+  <p>Cloning is basically downloading a new git repository that is
+online/in GitHub.  You take an existing git repository and
+duplicate/copy/clone it onto your own computer.  For example, if you
+wanted the files for this workshop series, you would first fork our
+<a href="https://github.com/codeasmanuscript/workshops">GitHub Code As Manuscript workshop repo</a>
+so you have your own copy of it on your account and then you clone
+it into your computer. </p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>## First fork our Code As Manuscript and then:
+cd /path/to/where/you/want/the/repo
+git clone https://github.com/your-name/workshops.git
+## You now have the workshop files on your computer.
+</code></pre>
+
+<h2 id="git-remote-add-name-server-url"><code>git remote add &lt;name&gt; &lt;server-url&gt;</code></h2>
+
+<blockquote>
+  <p>A remote, in git terminology, is a server or online location.
+Remote is the opposite of local.  A remote repository is a
+repository that is <em>not</em> on your computer, while a local repository
+is.  Think of the remote as an external hard drive.  When you add a
+remote, you use a name (by convention the name is usually “origin”,
+which I <em>strongly</em> encourage you to use as well) that will tell git
+that that is the remote name.  The server url can generally be found
+on the GitHub or BitBucket page, usually in the top or bottom right
+corner.  For instance, the server url for my own ‘test’ project
+would be <code>https://github.com/lwjohnst86/test.git</code>.  to describe your
+Git project that you want to store on the server such as Github.</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>cd /path/to/your/git/repo
+## The actual URL can be found on GitHub, usually in the corner.
+git remote add origin https://github.com/yourname/yourproject.git
+git push
+</code></pre>
+
+<h2 id="git-push"><code>git push</code></h2>
+
+<blockquote>
+  <p>Push is essentially the same as uploading your local git repository
+to the remote (GitHub) repository.  Pushing is more powerful than a
+simple upload, as git checks the remote repository, compares it to
+the local repository, making sure that the integrity of the files is
+preserved and that nothing is lost or overwritten (unlike Dropbox
+for example).  This is especially important for your research files!</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>cd /path/to/your/git/repo
+## ... edit a file ...
+git commit -am "Edited a file"
+git push
+</code></pre>
+
+<h2 id="git-pull"><code>git pull</code></h2>
+
+<blockquote>
+  <p>This is essentially a command to download the remote (GitHub)
+repository contents and merge it into your own local git repository.
+This is only ever used if you a) work on a project that is only more
+than one computer and you use git and GitHub to sync the files
+across computers, or b) if you work on a team and one or more other
+person(s) are making changes to the remote (GitHub) repository.
+Pulling then syncs the updated remote content with your local
+content.  This is where git really shines when you collaborate with
+others on a project (ie: this workshop series)!</p>
+</blockquote>
+
+<blockquote>
+  <p>Example code:</p>
+</blockquote>
+
+<pre><code>cd /path/to/your/git/repo
+## Someone has added stuff to the remote repo
+git pull
+</code></pre>
+
+
+</div>
+
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Introduction to R &middot; Code As Manuscript
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class="theme-base-0d">
+
+    <div class="sidebar">
+  <div class="container"> <!--sidebar-sticky? I deleted it from here-->
+    <div class="sidebar-about">
+      <h2>
+        <a href="">
+          Code As Manuscript
+        </a>
+      </h2>
+      <p class="lead">Writing your code and analyses as if <i>it</i> was the manuscript.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            
+              <a class="sidebar-nav-item" href="/">About</a>
+            
+          
+        
+      
+        
+          
+            
+              <a class="sidebar-nav-item" href="/gps/">GPS</a>
+            
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            
+              <a class="sidebar-nav-item" href="/lessons/">Lessons</a>
+            
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/codeasmanuscript">GitHub</a>
+    </nav>
+
+    <p>&copy; 2015. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Introduction to R</h1>
+  <h1 id="starting-r">Starting R</h1>
+
+<p>We will be using R studio for this course as it’s a user-friendly GUI for R. You can also access R from Terminal (Mac) or Command Line (Windows) if you please. </p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">getwd</span><span class="p">()</span>
+
+<span class="kp">setwd</span><span class="p">(</span><span class="s">&quot;/Users/thesarahmeister/&quot;</span><span class="p">)</span>
+
+<span class="kp">dir.create</span><span class="p">(</span><span class="s">&quot;Desktop/practice-2015-10/sarah/intror&quot;</span><span class="p">)</span>
+
+<span class="kp">setwd</span><span class="p">(</span><span class="s">&quot;Desktop/practice-2015-10/sarah/intror&quot;</span><span class="p">)</span>
+
+<span class="kp">dir</span><span class="p">()</span></code></pre></div>
+
+<h1 id="now-lets-code">Now let’s code!</h1>
+
+<p>Download the <code>airQuality.csv</code> file from our <a href="https://github.com/codeasmanuscript/practice-2015-10">Github repo</a> and import it into R using the <code>read.csv</code> function</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">airQuality <span class="o">&lt;-</span> read.csv<span class="p">(</span><span class="s">&quot;airQuality.csv&quot;</span><span class="p">,</span> header <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span></code></pre></div>
+
+<p>Now let’s look at the data using a few different functions</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">head</span><span class="p">(</span>airQuality<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67   May   1
+## 2    36     118  8.0   72   May   2
+## 3    12     149 12.6   74   May   3
+## 4    18     313 11.5   62   May   4
+## 5    NA      NA 14.3   56   May   5
+## 6    28      NA 14.9   66   May   6</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">head</span><span class="p">(</span>airQuality<span class="p">,</span> n<span class="o">=</span><span class="m">8</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##   Ozone Solar.R Wind Temp Month Day
+## 1    41     190  7.4   67   May   1
+## 2    36     118  8.0   72   May   2
+## 3    12     149 12.6   74   May   3
+## 4    18     313 11.5   62   May   4
+## 5    NA      NA 14.3   56   May   5
+## 6    28      NA 14.9   66   May   6
+## 7    23     299  8.6   65   May   7
+## 8    19      99 13.8   59   May   8</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">tail</span><span class="p">(</span>airQuality<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##     Ozone Solar.R Wind Temp Month Day
+## 148    14      20 16.6   63   Sep  25
+## 149    30     193  6.9   70   Sep  26
+## 150    NA     145 13.2   77   Sep  27
+## 151    14     191 14.3   75   Sep  28
+## 152    18     131  8.0   76   Sep  29
+## 153    20     223 11.5   68   Sep  30</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">str<span class="p">(</span>airQuality<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## &#39;data.frame&#39;:	153 obs. of  6 variables:
+##  $ Ozone  : int  41 36 12 18 NA 28 23 19 8 NA ...
+##  $ Solar.R: int  190 118 149 313 NA NA 299 99 19 194 ...
+##  $ Wind   : num  7.4 8 12.6 11.5 14.3 14.9 8.6 13.8 20.1 8.6 ...
+##  $ Temp   : int  67 72 74 62 56 66 65 59 61 69 ...
+##  $ Month  : Factor w/ 5 levels &quot;Aug&quot;,&quot;Jul&quot;,&quot;Jun&quot;,..: 4 4 4 4 4 4 4 4 4 4 ...
+##  $ Day    : int  1 2 3 4 5 6 7 8 9 10 ...</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">summary</span><span class="p">(</span>airQuality<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##      Ozone           Solar.R           Wind             Temp      
+##  Min.   :  1.00   Min.   :  7.0   Min.   : 1.700   Min.   :56.00  
+##  1st Qu.: 18.00   1st Qu.:115.8   1st Qu.: 7.400   1st Qu.:72.00  
+##  Median : 31.50   Median :205.0   Median : 9.700   Median :79.00  
+##  Mean   : 42.13   Mean   :185.9   Mean   : 9.958   Mean   :77.88  
+##  3rd Qu.: 63.25   3rd Qu.:258.8   3rd Qu.:11.500   3rd Qu.:85.00  
+##  Max.   :168.00   Max.   :334.0   Max.   :20.700   Max.   :97.00  
+##  NA&#39;s   :37       NA&#39;s   :7                                       
+##  Month         Day      
+##  Aug:31   Min.   : 1.0  
+##  Jul:31   1st Qu.: 8.0  
+##  Jun:30   Median :16.0  
+##  May:31   Mean   :15.8  
+##  Sep:30   3rd Qu.:23.0  
+##           Max.   :31.0  
+##</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">nrow</span><span class="p">(</span>airQuality<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 153</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">ncol</span><span class="p">(</span>airQuality<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 6</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">range</span><span class="p">(</span>airQuality<span class="o">$</span>Temp<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1] 56 97</code></pre></div>
+
+<p>Lets alter our dataset a bit</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">names</span><span class="p">(</span>airQuality<span class="o">$</span>Solar.R<span class="p">)</span> <span class="o">&lt;-</span> <span class="s">&quot;Solar&quot;</span>
+
+airQuality<span class="o">$</span>Random <span class="o">&lt;-</span> rnorm<span class="p">(</span><span class="m">153</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">)</span></code></pre></div>
+
+<p>Okay time to subset our data</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">rowThree <span class="o">&lt;-</span> airQuality<span class="p">[</span><span class="m">3</span><span class="p">,</span> <span class="p">]</span>
+
+colFour <span class="o">&lt;-</span> airQuality<span class="p">[</span> <span class="p">,</span><span class="m">4</span><span class="p">]</span>
+
+ozone <span class="o">&lt;-</span> airQuality<span class="o">$</span>Ozone
+
+highTemp <span class="o">&lt;-</span> airQuality<span class="p">[</span>airQuality<span class="o">$</span>Temp <span class="o">&gt;</span> <span class="m">80</span><span class="p">,</span> <span class="p">]</span>
+
+may <span class="o">&lt;-</span> airQuality<span class="p">[</span>airQuality<span class="o">$</span>Month <span class="o">==</span> <span class="s">&quot;May&quot;</span><span class="p">,</span> <span class="p">]</span>
+
+highTempOrMay <span class="o">&lt;-</span> airQuality<span class="p">[</span>airQuality<span class="o">$</span>Month <span class="o">==</span> <span class="s">&quot;May&quot;</span> <span class="o">|</span> airQuality<span class="o">$</span>Temp <span class="o">&gt;</span> <span class="m">80</span><span class="p">,</span> <span class="p">]</span>
+
+lowTempAndSep <span class="o">&lt;-</span> <span class="kp">subset</span><span class="p">(</span>airQuality<span class="p">,</span> airQuality<span class="o">$</span>Month <span class="o">==</span> <span class="s">&quot;Sep&quot;</span> <span class="o">&amp;</span> airQuality<span class="o">$</span>Temp <span class="o">&lt;</span> <span class="m">70</span><span class="p">)</span></code></pre></div>
+
+<p>okay let’s perform some basic data manipulations on our dataframe and subsetted data</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">mean</span><span class="p">(</span>airQuality<span class="o">$</span>Ozone<span class="p">)</span> <span class="c1">#returns an NA</span>
+
+<span class="kp">mean</span><span class="p">(</span>airQuality<span class="o">$</span>Ozone<span class="p">,</span> na.rm<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+
+<span class="kp">colMeans</span><span class="p">(</span>airQuality<span class="p">,</span> na.rm<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span> <span class="c1">#this one doesn&#39;t work</span>
+
+airQualNoMonth <span class="o">&lt;-</span> airQuality<span class="p">[,</span><span class="m">-5</span><span class="p">]</span>
+
+<span class="kp">colMeans</span><span class="p">(</span>airQualNoMonth<span class="p">,</span> na.rm<span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+
+sd<span class="p">(</span>colFour<span class="p">)</span>
+
+sd<span class="p">(</span>airQualNoMonth<span class="p">)</span></code></pre></div>
+
+<p>What happens if we have multiple columns that are non-numeric and we don’t want to remove them all to use the built-in <code>colMeans()</code> function? We can make our <strong>own</strong> function!</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">columnmean <span class="o">&lt;-</span> <span class="kr">function</span> <span class="p">(</span>y<span class="p">,</span> remove.NA <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="p">{</span>
+  nc <span class="o">&lt;-</span> <span class="kp">ncol</span><span class="p">(</span>y<span class="p">)</span>
+  means <span class="o">&lt;-</span> <span class="kt">vector</span><span class="p">(</span><span class="s">&quot;numeric&quot;</span><span class="p">,</span> length<span class="o">=</span><span class="m">0</span><span class="p">)</span>
+  <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>nc<span class="p">)</span> <span class="p">{</span>
+    means<span class="p">[</span>i<span class="p">]</span> <span class="o">&lt;-</span> <span class="kp">mean</span><span class="p">(</span>y<span class="p">[,</span>i<span class="p">],</span> na.rm <span class="o">=</span> remove.NA<span class="p">)</span>
+  <span class="p">}</span>
+  means
+<span class="p">}</span>
+
+columnmean<span class="p">(</span>airQuality<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Warning in mean.default(y[, i], na.rm = remove.NA): argument is not numeric
+## or logical: returning NA</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [1]  42.1293103 185.9315068   9.9575163  77.8823529          NA  15.8039216
+## [7]   0.8340804</code></pre></div>
+
+<p>Cool right? Now let’s try a function with an if/else expression. </p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">above80 <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span>y<span class="p">)</span> <span class="p">{</span>
+    y <span class="o">&lt;-</span> na.omit<span class="p">(</span>y<span class="p">)</span>
+    nob <span class="o">&lt;-</span> <span class="kp">length</span><span class="p">(</span>y<span class="p">)</span>
+    high <span class="o">&lt;-</span> <span class="kt">vector</span><span class="p">(</span><span class="s">&quot;numeric&quot;</span><span class="p">,</span> length<span class="o">=</span><span class="m">0</span><span class="p">)</span>
+    low <span class="o">&lt;-</span> <span class="kt">vector</span><span class="p">(</span><span class="s">&quot;numeric&quot;</span><span class="p">,</span> length<span class="o">=</span><span class="m">0</span><span class="p">)</span>
+  <span class="kr">for</span> <span class="p">(</span>i <span class="kr">in</span> <span class="m">1</span><span class="o">:</span>nob<span class="p">)</span> <span class="p">{</span>
+    <span class="kr">if</span> <span class="p">(</span>y<span class="p">[</span>i<span class="p">]</span> <span class="o">&gt;</span> <span class="m">80</span><span class="p">)</span> <span class="p">{</span>
+      high <span class="o">&lt;-</span> <span class="kp">append</span><span class="p">(</span>high<span class="p">,</span> y<span class="p">[</span>i<span class="p">])</span>
+    <span class="p">}</span>
+    <span class="kr">else</span> <span class="p">{</span>
+      low <span class="o">&lt;-</span> <span class="kp">append</span><span class="p">(</span>low<span class="p">,</span> y<span class="p">[</span>i<span class="p">])</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="kt">list</span><span class="p">(</span>high<span class="p">,</span>low<span class="p">)</span>
+<span class="p">}</span>
+
+above80<span class="p">(</span>airQuality<span class="o">$</span>Temp<span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## [[1]]
+##  [1] 81 84 85 82 87 90 87 93 92 82 83 84 85 81 84 83 83 88 92 92 89 82 81
+## [24] 91 81 82 84 87 85 81 82 86 85 82 86 88 86 83 81 81 81 82 86 85 87 89
+## [47] 90 90 92 86 86 82 81 86 88 97 94 96 94 91 92 93 93 87 84 81 82 81
+## 
+## [[2]]
+##  [1] 67 72 74 62 56 66 65 59 61 69 74 69 66 68 58 64 66 57 68 62 59 73 61
+## [24] 61 57 58 57 67 79 76 78 74 67 79 80 79 77 72 65 73 76 77 76 76 76 75
+## [47] 78 73 80 77 73 80 74 80 79 77 79 76 78 78 77 72 75 79 80 78 75 73 76
+## [70] 77 71 71 78 67 76 68 64 71 69 63 70 77 75 76 68</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r">highlow <span class="o">&lt;-</span> above80<span class="p">(</span>airQuality<span class="o">$</span>Temp<span class="p">)</span>
+
+high <span class="o">&lt;-</span> highlow<span class="p">[[</span><span class="m">1</span><span class="p">]]</span>
+
+low <span class="o">&lt;-</span> highlow<span class="p">[[</span><span class="m">2</span><span class="p">]]</span></code></pre></div>
+
+<h1 id="loop-functions">Loop Functions</h1>
+
+<p>The last thing for today are the very useful built-in loop functions. These functions have the word <code>apply</code> in them.</p>
+
+<ul>
+  <li><code>lapply</code>: loop over a list and evaluate a function on each element </li>
+  <li><code>sapply</code>: same as <code>lapply</code> but it tries to simplify the result</li>
+  <li><code>apply</code>: apply a function over the margins of an array </li>
+  <li><code>tapply</code>: apply a function over subsets of a vector (<code>lapply()</code> used with <code>split()</code> does the same thing)</li>
+  <li><code>mapply</code>: a multivariate version of <code>lapply</code> </li>
+</ul>
+
+<h1 id="lapply">lapply()</h1>
+
+<p>Remember the function we made? It can be replaced with an <code>lapply()</code> loop.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">lapply</span><span class="p">(</span>airQuality<span class="p">,</span> <span class="kp">mean</span><span class="p">,</span> na.rm <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Warning in mean.default(X[[i]], ...): argument is not numeric or logical:
+## returning NA</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## $Ozone
+## [1] 42.12931
+## 
+## $Solar.R
+## [1] 185.9315
+## 
+## $Wind
+## [1] 9.957516
+## 
+## $Temp
+## [1] 77.88235
+## 
+## $Month
+## [1] NA
+## 
+## $Day
+## [1] 15.80392
+## 
+## $Random
+## [1] 0.8340804</code></pre></div>
+
+<h1 id="sapply">sapply()</h1>
+
+<p>Alternatively we can try <code>sapply()</code>. This will return a named numeric vector (simpified from a list)</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">sapply</span><span class="p">(</span>airQuality<span class="p">,</span> <span class="kp">mean</span><span class="p">,</span> na.rm <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## Warning in mean.default(X[[i]], ...): argument is not numeric or logical:
+## returning NA</code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##       Ozone     Solar.R        Wind        Temp       Month         Day 
+##  42.1293103 185.9315068   9.9575163  77.8823529          NA  15.8039216 
+##      Random 
+##   0.8340804</code></pre></div>
+
+<h1 id="apply">apply()</h1>
+
+<p><code>apply()</code> first coerces your dataframe to a matrix, which means all the columns must have the same type. Because our dataframe does not meet this requirement, I’ll be taking a subset of the data. However normally this function would be used with matrices.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">apply</span><span class="p">(</span>airQuality<span class="p">[,</span><span class="kt">c</span><span class="p">(</span><span class="m">-5</span><span class="p">)],</span> <span class="m">2</span><span class="p">,</span> sd<span class="p">,</span> na.rm <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##     Ozone   Solar.R      Wind      Temp       Day    Random 
+## 32.987885 90.058422  3.523001  9.465270  8.864520  1.702748</code></pre></div>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">apply</span><span class="p">(</span>airQuality<span class="p">[,</span><span class="kt">c</span><span class="p">(</span><span class="m">-5</span><span class="p">)],</span> <span class="m">1</span><span class="p">,</span> sd<span class="p">,</span> na.rm <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##   [1]  73.41056  47.10067  58.70766 121.70656  25.84809  26.04662 115.78934
+##   [8]  37.81242  21.72182  81.76305  30.57993  98.61364 112.48113 105.87910
+##  [15]  25.77019 129.68394 117.13180  31.48019 123.11327  23.45005  22.04494
+##  [22] 122.75860  22.31392  33.78387  27.75197 109.72626  25.52936  23.08510
+##  [29]  92.54274  83.98264 104.96655 122.28934 122.26272 102.26912  80.17099
+##  [36]  93.22042 111.71734  50.72655 116.39820 109.91669 123.80647 109.33780
+##  [43] 105.61882  58.04058 139.83157 135.78619  72.47646 106.57482  22.69892
+##  [50]  46.99088  53.39193  63.12190  34.68586  42.20065 103.83277  55.46397
+##  [57]  53.27903  29.48763  42.35430  28.82275  58.45204 106.65017  95.71461
+##  [64]  91.03355  48.29137  67.75539 121.04271 105.17786 102.21105 103.73951
+##  [71]  67.85806  60.36638 102.12418  66.77666 122.15837  30.47252  98.18964
+##  [78] 104.17154 107.50304  71.10224  82.15950  27.01336 107.26840 123.27214
+##  [85] 109.65291  84.61129  35.69611  35.57326  79.09813 102.09156  93.65612
+##  [92]  94.17138  38.52755  30.10249  37.80607  42.72401  35.00540  40.86470
+##  [99] 100.01097  87.89503  81.86752  94.33262  59.74239  72.85954 104.39937
+## [106]  60.02004  34.82317  32.76571  31.66348  45.64381  92.14837  70.89325
+## [113]  98.23862  25.76101 105.45552  79.03638  96.89867  79.61814  64.86591
+## [120]  75.51586  86.56625  88.85959  70.66865  68.97672  77.24052  73.02902
+## [127]  75.47660  42.69652  39.96385  97.54659  84.72817  88.72068  99.38013
+## [134]  89.00553  99.16540  91.15726  25.26498  44.25226  89.69835  84.94269
+## [141]  26.99628  90.45971  77.59633  90.81731  25.06840  52.76213  27.14452
+## [148]  21.24448  72.02789  58.97018  71.62447  50.52825  83.33668</code></pre></div>
+
+<h1 id="mapply">mapply</h1>
+
+<p><code>mapply</code> is a multivariate apply (like <code>lapply</code>) that applies a function over a set of arguments.</p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">mapply</span><span class="p">(</span><span class="kp">range</span><span class="p">,</span> airQuality<span class="p">[,</span><span class="kt">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">6</span><span class="p">)],</span> na.rm <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">##      Ozone Wind Day
+## [1,]     1  1.7   1
+## [2,]   168 20.7  31</code></pre></div>
+
+<h1 id="tapply">tapply</h1>
+
+<p><code>tapply</code> is used to apply a function over subsets of a vector. It takes two arguements: a vector to apply to function on and a factor variable that subsets the vector. It will simplify the result, like sapply. </p>
+
+<div class="highlight"><pre><code class="language-r" data-lang="r"><span class="kp">tapply</span><span class="p">(</span>airQuality<span class="o">$</span>Ozone<span class="p">,</span> airQuality<span class="o">$</span>Month<span class="p">,</span> <span class="kp">range</span><span class="p">,</span> na.rm <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span></code></pre></div>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">## $Aug
+## [1]   9 168
+## 
+## $Jul
+## [1]   7 135
+## 
+## $Jun
+## [1] 12 71
+## 
+## $May
+## [1]   1 115
+## 
+## $Sep
+## [1]  7 96</code></pre></div>
+
+
+</div>
+
+    </div>
+
+  </body>
+</html>

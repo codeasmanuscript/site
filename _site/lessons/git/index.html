@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Introduction: Version control using Git and GitHub &middot; Code As Manuscript
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body class="theme-base-0d">
+
+    <div class="sidebar">
+  <div class="container"> <!--sidebar-sticky? I deleted it from here-->
+    <div class="sidebar-about">
+      <h2>
+        <a href="">
+          Code As Manuscript
+        </a>
+      </h2>
+      <p class="lead">Writing your code and analyses as if <i>it</i> was the manuscript.</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            
+              <a class="sidebar-nav-item" href="/">About</a>
+            
+          
+        
+      
+        
+          
+            
+              <a class="sidebar-nav-item" href="/gps/">GPS</a>
+            
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+            
+              <a class="sidebar-nav-item" href="/lessons/">Lessons</a>
+            
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="https://github.com/codeasmanuscript">GitHub</a>
+    </nav>
+
+    <p>&copy; 2015. All rights reserved.</p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="page">
+  <h1 class="page-title">Introduction: Version control using Git and GitHub</h1>
+  <p>Version control is a system that manages changes to a file or files.
+These changes are kept as logs in a history, with detailed information
+on what file(s) was changed, what was changed within the file, who
+changed it, and a message on why the change was made.  This is
+extremely useful, especially when working in teams or for yourself 6
+months in the future (because you <em>will</em> forget things)!</p>
+
+<p>To understand how incredibly powerful version control is, think about
+these questions: How many files of different versions of a manuscript
+or thesis do you have laying around after getting feedback from your
+supervisor or co-authors? Have you ever wanted to experiment with your
+code or your manuscript and need to make a new file so that the
+original is not touched? Have you ever deleted something and wish you
+hadn’t? Have you ever forgotten what you were doing on a project? </p>
+
+<p>Version control fixes <em>all</em> of these problems!  And our aim for this
+workshop is to get you familiar with Git and (at least partly)
+comfortable with the concept.</p>
+
+<h2 id="learning-expectations">Learning expectations</h2>
+
+<p>After this workshop, our expectation is that you will:</p>
+
+<ul>
+  <li>Know how to use the basic tools of version control in your work</li>
+  <li>Know how to collaborate with others on a project</li>
+  <li>Have a basic understanding of how Git and GitHub works</li>
+  <li><em>Know where to go for help</em></li>
+</ul>
+
+<h1 id="materials-for-this-lesson">Materials for this lesson:</h1>
+
+<ul>
+  <li><a href="slides/">Slides</a></li>
+  <li><a href="cheatsheet/">Cheatsheet</a></li>
+  <li><a href="assignment/">Assignment</a></li>
+</ul>
+
+<p>Other resources can be found <a href="/lessons/resources/">here</a></p>
+
+<h1 id="brief-aside-filenaming">Brief aside: Filenaming</h1>
+
+<p>Because Git keeps a record of your files and changes to them, you
+don’t need to have different files names for different versions
+(eg. file-V01.doc, file-V02.doc, etc).  Plus, because part of the
+benefit of Git is eventually being able to collaborate, it’s
+<em>extremely</em> useful to follow some rules on filenaming.  We’ve put
+together some below:</p>
+
+<ol>
+  <li>
+    <p>Keep the names short, but meaningful. Remove unnecessary words such
+as “the”, “and”, “a” etc.</p>
+  </li>
+  <li>
+    <p>Don’t include spaces and avoid underscores (debatable and/or
+situational).  For a string of words, capitalize the first letter
+of each word, except for the first word
+(e.g. <code>fileNameDescription</code>)</p>
+  </li>
+  <li>
+    <p>Use hyphens to separate important parts of the name or when there
+is an abbreviation followed by another word.  For example,
+<code>diabetesRisk-AnalysisOutput</code> which separates the two concepts, the
+project descriptor <code>diabetesRisk</code> and the contents of the file
+<code>AnalysisOutput</code>.  Another example:
+<code>report-AnalysisFoodIntake-2014.pdf</code> and <strong>not</strong>
+<code>reportAnalysisFoodIntake2014.pdf</code>.</p>
+  </li>
+  <li>
+    <p>Avoid redundancy in file names and file paths (folder names).  For
+example, don’t use <code>folderName/fileName-folderName.txt</code> and instead
+use <code>folderName/fileName.txt</code>.  Another example: <strong>don’t</strong> use
+<code>diabetesFats/analysis-DiabetesFats.sas</code> and <strong>instead</strong> use
+<code>diabetesFats/analysis.sas</code>.</p>
+  </li>
+  <li>
+    <p>If a number is included in the filename, such as for the version
+number, use two digits not one (e.g. <code>V01</code>, not <code>V1</code>).</p>
+  </li>
+  <li>
+    <p>When including a date, include it at the very end of the filename
+and in the international standard format <code>YYYY-MM-DD</code> (in all numbers).</p>
+  </li>
+</ol>
+
+<h1 id="brief-aside-2-tips-on-using-the-terminal">Brief aside 2: Tips on using the terminal</h1>
+
+<ul>
+  <li>Make use of TAB-completion in the terminal!</li>
+  <li>Up arrow on the terminal goes to the previous command you entered.</li>
+</ul>
+
+<h1 id="putting-your-files-under-version-control-using-git">Putting your files under version control using Git</h1>
+
+<h2 id="setting-up-your-user-information-and-github-account">Setting up your user information and GitHub account</h2>
+
+<p>For configuring your git, follow the
+<a href="http://codeasmanuscript.org/lessons/git/cheatsheet/">“Initial setup” in the cheatsheet page</a>
+I’ve put together.</p>
+
+<p>Then, set up a <a href="https://github.com/">GitHub</a> account if you haven’t already.  If
+you are concerned about having your research or data be public you can either a)
+<a href="https://education.github.com/">request</a> 5 free private repos from GitHub or b)
+use <a href="https://bitbucket.org/">BitBucket</a>, which uses private repos by
+default. But at least for this workshop, set up a GitHub account.</p>
+
+<h2 id="basics-of-using-git-for-a-fresh-repository">Basics of using Git for a fresh repository</h2>
+
+<p>Create a folder and create a git repository (which is the stored
+history) in that folder. (Note: <code>##</code> is a comment, not a command).</p>
+
+<pre><code>cd ~/Desktop ## Move to your desktop
+mkdir playing ## Create a folder (aka directory)
+cd playing
+git init ## Create the repository (init = initialize)
+</code></pre>
+
+<p>Now, create a file, get git to track it, and save it to the history.</p>
+
+<pre><code>touch bio.txt ## Command to create a file called bio.txt
+ls ## Check that you created the file, ls = list files
+git add bio.txt ## Track the file
+## Save the file to the history with a message (-m)
+git commit -m "Initial commit"
+</code></pre>
+
+<p>Now, open the <code>bio.txt</code> file and add:</p>
+
+<ul>
+  <li>Your name</li>
+  <li>Your program and year</li>
+  <li>Your progamming language/statistical language of choice</li>
+</ul>
+
+<p>Then:</p>
+
+<pre><code>git status ## Check the activity
+git diff bio.txt ## Compare to the one in the history
+git add bio.txt ## This sends it to the staging area
+git commit -m "Added my bio" ## This sends it to the history
+</code></pre>
+
+<p>For a description on what the different stages are (working directory,
+staging area, and committed history) see the below links or check out the
+<a href="/lessons/resources/">resources page</a>:</p>
+
+<ul>
+  <li>Description: https://git-scm.com/book/en/v2/Getting-Started-Git-Basics</li>
+  <li>Image: https://git-scm.com/book/en/v2/book/01-introduction/images/areas.png</li>
+</ul>
+
+<p>Then, to see what has happened in your history:</p>
+
+<pre><code>git log ## View the log of your history
+git log --graph --oneline ## A condensed view of the log
+</code></pre>
+
+<h2 id="including-github-in-your-workflow">Including GitHub in your workflow</h2>
+
+<p>One of the major strengths of Git are it’s features that allow easy
+collaboration on complex (or simple) projects. GitHub, which is a hosting
+service (not a program and not related to Git), uses Git to save and share Git
+repositories online. Most, if not all of the open source community has their
+projects on GitHub. You could set up your own GitHub repository, but for now, we
+will <a href="https://help.github.com/articles/fork-a-repo/">‘fork’</a> (which means copy
+someone else’s GitHub repository in GitHub language) the <em>Code as Manuscript</em>
+practice repository (in the form <code>practice-YYYY-MM</code>). There is a button in the
+top right corner called ‘Fork’ that allows you to do that. Click it. The
+<code>practice-YYYY-MM</code> repository is now on your GitHub account! Now we can ‘clone’
+(meaning download the git repository onto your computer) your newly created
+‘forked’ repository!</p>
+
+<pre><code>mkdir ~/Desktop/workshops/
+cd ~/Desktop/workshops/
+git clone https://github.com/yourusername/practice-YYYY-MM.git
+cd practice-YYYY-MM/
+</code></pre>
+
+<p>Now it should have downloaded the repository onto your computer. Because you
+cloned forked repository, it’s good practice to also include a link to the
+original (upstream) repository:</p>
+
+<pre><code>git remote add upstream https://github.com/codeasmanuscript/practice-YYYY-MM.git
+</code></pre>
+
+<p>You can view the different links (called remotes) you have to your GitHub
+accounts:</p>
+
+<pre><code>git remote -v # v = verbose, or rather more detailed
+</code></pre>
+
+<p>You can see you should have two remotes, <code>origin</code> (<em>your</em> forked repo) and
+<code>upstream</code> (codeasmanuscript repo). Now, create a new directory that you will
+use for the rest of the workshops, as well as all the directories you will use
+for the other workshop topics:</p>
+
+<pre><code>mkdir your-name/
+cd your-name/
+# Create multiple directories by typing in more names
+mkdir git intror plotting wrangling rmarkdown
+cd git/ # Move into the git one
+</code></pre>
+
+<p>Now, create a <code>bio.txt</code> file, write up your name and program. Add and commit
+that file. Now we want to upload (<code>push</code>) your new file onto your GitHub repo
+and submit a
+<a href="https://help.github.com/articles/using-pull-requests/">‘pull request’</a>:</p>
+
+<pre><code>git push origin master # Origin is your account
+</code></pre>
+
+<p>Go to GitHub and click the ‘Pull Requests’ button on the side and on the next
+page click the ‘New pull request’ button. Keep clicking until you have finished
+submitting your pull request. After we (the <em>Code As Manuscript</em> instructors)
+accepted the pull requests, you need to update your local git repo and your
+forked GitHub repo by downloading (<code>pull</code>) from the original <code>upstream</code> GitHub
+repo.</p>
+
+<pre><code>git pull upstream master
+git push origin master
+</code></pre>
+
+<p>That covers the basics of using Git and incorporating GitHub into the workflow!
+If you ever need help with any commands, check out
+<a href="http://stackoverflow.com/">StackOverflow</a> for answers on tens of thousands of
+questions with tens of thousands of answers!</p>
+
+<h1 id="brief-glossary-of-terms">Brief glossary of terms:</h1>
+
+<ul>
+  <li><code>cd</code> - change directory</li>
+  <li>directory - the same thing as a folder</li>
+  <li><code>ls</code> - list the files and folders in a folder</li>
+  <li><code>touch</code> - create an empty file</li>
+  <li>repository - the saved history of a folder and files, used by git and located
+in the <code>.git/</code> folder.</li>
+  <li><code>init</code> - start or initialize a git repository</li>
+  <li><code>add</code> - put a file into the staging area, so that git starts
+tracking it</li>
+  <li>staging/index area - where files are stored before going into the
+history</li>
+  <li><code>commit</code> - send files in the staging/index area into the history
+(the git repository)</li>
+  <li><code>status</code> - check the status of the folder and the git repository</li>
+  <li><code>diff</code> - compare a file to the a file in the history</li>
+  <li><code>log</code> - view the commit history in the git repository</li>
+</ul>
+
+
+</div>
+
+    </div>
+
+  </body>
+</html>
