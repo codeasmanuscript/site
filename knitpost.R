@@ -12,7 +12,7 @@ KnitPost <- function(input, outfile, base.url = '/') {
     # this function is a modified version of an example here:
     # http://jfisher-usgs.github.com/r/2012/07/03/knitr-jekyll/
     knitr::opts_knit$set(base.url = base.url)
-    knitr::opts_chunk$set(fig.path = 'images/',
+    knitr::opts_chunk$set(fig.path = '/lessons/images/',
                           collapse = TRUE)
     knitr::render_jekyll()
     knitr::knit(input, outfile, envir = parent.frame())

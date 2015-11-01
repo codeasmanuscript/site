@@ -1,4 +1,14 @@
 ## Ignore ...
 
+*.Rmd
+*/template/
+survey/
+*.csv
+gps/eventListing.md
+evals/
+lessons/potentials.md
+_site/
+
 ## ...But not ignore these files
+
 

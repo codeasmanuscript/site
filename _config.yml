@@ -25,6 +25,4 @@ lesson-list: [Git, Intro, Plotting, Wrangling, Rmarkdown, Macros, ODS]
 category-list: [R, Git, Macros, ODS, Lessons]
 tag-list: [Lessons, Git, GitHub, Macros, ODS, Assignment, Slides, Cheatsheet]
 
-exclude: ['lessons/template/*', gps/eventListing.md, '*.Rmd',
-         evals/, survey/, lessons/potentials.md, README.md]
 
