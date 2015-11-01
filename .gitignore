@@ -8,6 +8,8 @@ gps/eventListing.md
 evals/
 lessons/potentials.md
 _site/
+*.pdf
+*.sas
 
 ## ...But not ignore these files
 
