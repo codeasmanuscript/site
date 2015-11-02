@@ -17,8 +17,6 @@ categories:
     - R
 ---
 
-
-
 R is an object-oriented programing language, meaning everything we encounter in
 R is an object.
 
