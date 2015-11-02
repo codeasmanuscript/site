@@ -43,14 +43,14 @@ object of the resulting matrix; choose your own object name!
 
 
 ```
-## Error in eval(expr, envir, enclos): could not find function "kable"
+## Error in kable_markdown(x = structure(c("7", "9", "12", "2", "4", "13": the table must have a header (column names)
 ```
  
 *beta:* 
 
 
 ```
-## Error in eval(expr, envir, enclos): could not find function "kable"
+## Error in kable_markdown(x = structure(c("1", "7", "12", "19", "2", "8", : the table must have a header (column names)
 ```
 
 3. Load the `datasets` package and make a new dataframe with the `mtcars`
