@@ -426,43 +426,43 @@ write.csv(data, file = 'myfile.csv')
 **Assignment operators:** (Note: only use `<<-` under *very* special
 circumstances...)
 
-|Operator | Description |
-|-----|----|
-| <- | local environment assignment |
-| <<- | global environment assignment | 
+| Operator | Description |
+| :-----| :----|
+|  <- | local environment assignment |
+|  <<- | global environment assignment | 
 
 **Arthmetic Operators:**
 
-|Operator | Description |
-|---------|----------|
-|+        | addition |
-|-        | subtraction |
-|*        | multiplication |
-|/        | division |
-|^ or **  | exponentiation |
-|x %% y   | modulus (5 %% 2 is 1) |
-|x %/% y  | integer division (5%/% is 2) |
-|x %\*% y  | matrix multiplication |
+|  Operator | Description |
+| :--------- | :----------|
+| +        | addition |
+| -        | subtraction |
+| *        | multiplication |
+| /        | division |
+| ^ or **  | exponentiation |
+| x %% y   | modulus (5 %% 2 is 1) |
+| x %/% y  | integer division (5%/% is 2) |
+| x %\*% y  | matrix multiplication |
 
 **Logical Operators:**
 
-Operator  | Description
---------  | -----------
-<         | less than
-<=        | less than or equal to
->         | greater than
->=        | greater than or equal to
-==        | exactly equal to
-!=        | not equal to
-!x        | not x
-x \| y    | x OR y (returns a vector)
-x \|\| y    | x OR y (examines only 1st element of vector)
-x & y     | x AND y (returns a vector)
-x && y    | x AND y (examines only 1st element of vector)
-isTRUE(x) | test if X is TRUE
-any(x) | whether any of x is TRUE
-all(x) | whether all of x is TRUE
-identical(x, y) | whether x and y are the same
+| Operator  | Description |
+| :--------  | :----------- |
+| <         | less than |
+| <=        | less than or equal to |
+| >         | greater than |
+| >=        | greater than or equal to |
+| ==        | exactly equal to |
+| !=        | not equal to |
+| !x        | not x |
+| x \| y    | x OR y (returns a vector) |
+| x \|\| y    | x OR y (examines only 1st element of vector) |
+| x & y     | x AND y (returns a vector) |
+| x && y    | x AND y (examines only 1st element of vector) |
+| isTRUE(x) | test if X is TRUE |
+| any(x) | whether any of x is TRUE |
+| all(x) | whether all of x is TRUE |
+| identical(x, y) | whether x and y are the same |
 
 # Commenting in R #
 
@@ -650,13 +650,13 @@ lapply(x, mean)
 ## [1] 3
 ## 
 ## $b
-## [1] -0.008316832
+## [1] -0.01432303
 ## 
 ## $c
-## [1] 1.092931
+## [1] 1.209692
 ## 
 ## $d
-## [1] 5.137948
+## [1] 5.074065
 
 x <- list(a=matrix(1:4,2,2), b=matrix(1:6,3,2))
 x
@@ -693,8 +693,8 @@ same length, a matrix is returned. Otherwise a list is returned.
 ```r
 x <- list(a=1:5, b=rnorm(10), c=rnorm(20,1), d=rnorm(100,5))
 sapply(x, mean)
-##         a         b         c         d 
-## 3.0000000 0.0452514 1.2525226 5.1431194
+##          a          b          c          d 
+##  3.0000000 -0.4688831  1.3637382  5.0554572
 ```
 
 ## `apply()` ##
@@ -711,40 +711,40 @@ x <- matrix (rnorm(200), 20, 10)
 # keeping number of columns and collapsing rows. This gives a vector of the
 # means of columns.
 apply(x, 2, mean) 
-##  [1]  0.219047485 -0.127031907 -0.293477376  0.063501565 -0.211773767
-##  [6] -0.133377736  0.005738508 -0.148185192  0.315377249  0.001164317
+##  [1] -0.1425263041  0.3722331342 -0.4053484215  0.2222361470  0.1025042128
+##  [6]  0.0326634795 -0.0392162473  0.1080538668 -0.1189412452 -0.0006398336
 
 # this calculates the sum of all rows
 apply(x, 1, sum) 
-##  [1]  1.58477492 -1.49333621  4.16512795  3.35791172 -1.17387251
-##  [6] -0.17033144  1.16775945  0.86696806 -0.62028162  0.48063953
-## [11] -5.97704359 -5.18107412 -1.76383591 -3.42237000 -2.75816981
-## [16]  5.80189127 -3.59466944  3.02002793  0.06108873 -0.53154198
+##  [1] -0.3329863  3.9592465  4.3897524  2.3447179  5.0522403  1.6272305
+##  [7] -6.0279285 -1.9811560 -1.4574226 -1.6827364 -1.5263102 -3.6072861
+## [13] -1.6180348 -0.1516802  3.4670845  3.3807079 -4.5825162  1.3223023
+## [19]  0.7365968 -0.6914463
 
 ## Use additional arguments in apply, that it passes to the function quantile.
 y <- matrix(rnorm(200), 20, 10)
 apply(y, 1, quantile, probs = c(0.25, 0.75))
-##           [,1]       [,2]       [,3]       [,4]       [,5]       [,6]
-## 25% -0.6658664 -0.1301163 -0.8917724 -0.9459191 -1.0765242 -0.4851862
-## 75%  0.6703526  0.3340381  0.2858617  1.1195396 -0.1292691  0.9644903
-##           [,7]       [,8]       [,9]      [,10]      [,11]       [,12]
-## 25% -0.4175894 -0.1225270 -1.0595604 -1.1186105 -0.3164933 -0.06141719
-## 75%  0.9164166  0.8686937  0.5041656  0.7052509  0.7993255  0.68582819
-##          [,13]      [,14]     [,15]      [,16]      [,17]      [,18]
-## 25% -0.5912918 -0.7033537 0.1563117 -0.5828176 -0.4875611 -0.7360509
-## 75%  0.1561910  0.5080195 0.8613557  1.2862873  0.3462946  0.5613958
-##          [,19]       [,20]
-## 25% -0.4500689 -0.65342826
-## 75%  0.2982424  0.07797462
+##            [,1]       [,2]       [,3]      [,4]       [,5]       [,6]
+## 25% -0.07020685 -0.5230259 -0.1371069 -0.305532 -1.1736960 -0.7711439
+## 75%  0.42802982  0.7575069  0.7505365  1.158532 -0.1722151  0.4500244
+##           [,7]       [,8]       [,9]       [,10]      [,11]      [,12]
+## 25% -1.1456760 -1.2923700 -0.3551759 -0.08309222 -0.7909700 -0.3673994
+## 75%  0.6509867  0.7087055  0.5598557  0.63390147  0.5794755  1.0960217
+##          [,13]      [,14]      [,15]      [,16]       [,17]      [,18]
+## 25% -0.3945025 -0.3747994 -0.6524827 -1.1090014 -1.07281313 -0.4121124
+## 75%  1.1368668  0.6951993  0.4122121  0.2564116 -0.05552408  0.6303202
+##          [,19]      [,20]
+## 25% -0.1920546 -0.7609553
+## 75%  0.6205993  0.2308798
 
 # With an array (stacks of matrices: multidimensional).
 # Create an array that looks like a bunch of 2 by 2 matrices and take the mean of
 # those.
 a <- array(rnorm(2*2*10), c(2,2,10)) 
 apply(a, c(1,2), mean) #this keeps the 1st and 2nd dimension
-##             [,1]      [,2]
-## [1,] -0.05602328 0.1413757
-## [2,] -0.25374076 0.3143924
+##             [,1]       [,2]
+## [1,] -0.56995399 -0.1721706
+## [2,]  0.07756612 -0.5750429
 ```
 
 ## `mapply()` ##
@@ -791,41 +791,41 @@ noise<- function(n,mean, sd) {
 
 ## apply the noise function with n=5, mean=1 and sd=2
 noise(5, 1, 2)
-## [1] 1.7587764 0.8973867 2.0622343 1.8008369 1.5493995
+## [1]  1.9952001  3.3686543 -0.3938630  2.1627208 -0.8555895
 
 ## apply the noise function for n= 1 to 5, mean = 1 to 5, and sd = 2
 mapply(noise, 1:5, 1:5, 2)
 ## [[1]]
-## [1] 1.797518
+## [1] 2.445003
 ## 
 ## [[2]]
-## [1] -0.6439485  2.3973553
+## [1] 4.303090 3.148552
 ## 
 ## [[3]]
-## [1] 1.230656 2.726627 2.974514
+## [1] 2.910610 1.369910 2.491172
 ## 
 ## [[4]]
-## [1] 2.840882 5.318767 3.785804 4.482252
+## [1] 6.489644 4.404792 1.546499 2.852584
 ## 
 ## [[5]]
-## [1] 7.500863 6.544568 7.916379 6.137821 5.676220
+## [1] 5.8564696 4.5578019 6.2111724 9.6290213 0.9960932
 
 ## which is the same as writing
 list(noise(1,1,2), noise(2,2,2), noise(3,3,2), noise(4,4,2), noise(5,5,2))
 ## [[1]]
-## [1] 4.201303
+## [1] 1.064633
 ## 
 ## [[2]]
-## [1] 0.8483126 3.0579237
+## [1] 2.946213 3.258187
 ## 
 ## [[3]]
-## [1] 0.814678 4.570294 5.399942
+## [1] 2.077796 3.409540 3.762832
 ## 
 ## [[4]]
-## [1] 5.455103 3.421163 2.228478 4.288818
+## [1] 6.141016 4.600653 2.561109 2.311173
 ## 
 ## [[5]]
-## [1] 7.749654 6.168730 6.121027 5.978899 3.111585
+## [1] 5.295638 4.734599 8.136727 5.625598 3.661616
 
 # (the outputs are different because our function makes new random varibles each
 # time)
