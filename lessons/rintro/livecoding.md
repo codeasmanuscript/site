@@ -13,7 +13,7 @@ published: true
 We will be using R studio for this course as it's a user-friendly GUI for R. You can also access R from Terminal (Mac) or Command Line (Windows) if you please. 
 
 
-{% highlight r %}
+```r
 getwd()
 
 setwd("/Users/thesarahmeister/")
@@ -24,7 +24,7 @@ setwd("Desktop/practice-2015-10/sarah/intror")
 
 dir()
 
-{% endhighlight %}
+```
 
 # Now let's code! #
 
@@ -32,20 +32,15 @@ Download the `airQuality.csv` file from our [Github repo](https://github.com/cod
 
 
 
-{% highlight r %}
+```r
 airQuality <- read.csv("airQuality.csv", header = TRUE)
-{% endhighlight %}
+```
 
 Now let's look at the data using a few different functions
 
 
-{% highlight r %}
+```r
 head(airQuality)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##   Ozone Solar.R Wind Temp Month Day
 ## 1    41     190  7.4   67   May   1
 ## 2    36     118  8.0   72   May   2
@@ -53,18 +48,8 @@ head(airQuality)
 ## 4    18     313 11.5   62   May   4
 ## 5    NA      NA 14.3   56   May   5
 ## 6    28      NA 14.9   66   May   6
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 head(airQuality, n=8)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##   Ozone Solar.R Wind Temp Month Day
 ## 1    41     190  7.4   67   May   1
 ## 2    36     118  8.0   72   May   2
@@ -74,18 +59,8 @@ head(airQuality, n=8)
 ## 6    28      NA 14.9   66   May   6
 ## 7    23     299  8.6   65   May   7
 ## 8    19      99 13.8   59   May   8
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 tail(airQuality)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##     Ozone Solar.R Wind Temp Month Day
 ## 148    14      20 16.6   63   Sep  25
 ## 149    30     193  6.9   70   Sep  26
@@ -93,18 +68,8 @@ tail(airQuality)
 ## 151    14     191 14.3   75   Sep  28
 ## 152    18     131  8.0   76   Sep  29
 ## 153    20     223 11.5   68   Sep  30
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 str(airQuality)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## 'data.frame':	153 obs. of  6 variables:
 ##  $ Ozone  : int  41 36 12 18 NA 28 23 19 8 NA ...
 ##  $ Solar.R: int  190 118 149 313 NA NA 299 99 19 194 ...
@@ -112,18 +77,8 @@ str(airQuality)
 ##  $ Temp   : int  67 72 74 62 56 66 65 59 61 69 ...
 ##  $ Month  : Factor w/ 5 levels "Aug","Jul","Jun",..: 4 4 4 4 4 4 4 4 4 4 ...
 ##  $ Day    : int  1 2 3 4 5 6 7 8 9 10 ...
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 summary(airQuality)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##      Ozone           Solar.R           Wind             Temp      
 ##  Min.   :  1.00   Min.   :  7.0   Min.   : 1.700   Min.   :56.00  
 ##  1st Qu.: 18.00   1st Qu.:115.8   1st Qu.: 7.400   1st Qu.:72.00  
@@ -140,61 +95,31 @@ summary(airQuality)
 ##  Sep:30   3rd Qu.:23.0  
 ##           Max.   :31.0  
 ## 
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 nrow(airQuality)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 153
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 ncol(airQuality)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 6
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 range(airQuality$Temp)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 56 97
-{% endhighlight %}
+```
 
 Lets alter our dataset a bit
 
 
-{% highlight r %}
+```r
 
 names(airQuality$Solar.R) <- "Solar"
 
 airQuality$Random <- rnorm(153, 1, 2)
-{% endhighlight %}
+```
 
 Okay time to subset our data
 
 
-{% highlight r %}
+```r
 
 rowThree <- airQuality[3, ]
 
@@ -209,12 +134,12 @@ may <- airQuality[airQuality$Month == "May", ]
 highTempOrMay <- airQuality[airQuality$Month == "May" | airQuality$Temp > 80, ]
 
 lowTempAndSep <- subset(airQuality, airQuality$Month == "Sep" & airQuality$Temp < 70)
-{% endhighlight %}
+```
 
 okay let's perform some basic data manipulations on our dataframe and subsetted data
 
 
-{% highlight r %}
+```r
 
 mean(airQuality$Ozone) #returns an NA
 
@@ -229,12 +154,12 @@ colMeans(airQualNoMonth, na.rm=TRUE)
 sd(colFour)
 
 sd(airQualNoMonth)
-{% endhighlight %}
+```
 
 What happens if we have multiple columns that are non-numeric and we don't want to remove them all to use the built-in `colMeans()` function? We can make our **own** function!
 
 
-{% highlight r %}
+```r
 columnmean <- function (y, remove.NA = TRUE) {
   nc <- ncol(y)
   means <- vector("numeric", length=0)
@@ -245,26 +170,16 @@ columnmean <- function (y, remove.NA = TRUE) {
 }
 
 columnmean(airQuality)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Warning in mean.default(y[, i], na.rm = remove.NA): argument is not numeric
 ## or logical: returning NA
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1]  42.129310 185.931507   9.957516  77.882353         NA  15.803922
-## [7]   0.916601
-{% endhighlight %}
+## [1]  42.1293103 185.9315068   9.9575163  77.8823529          NA  15.8039216
+## [7]   0.9840097
+```
 
 Cool right? Now let's try a function with an if/else expression. 
 
 
-{% highlight r %}
+```r
 
 above80 <- function(y) {
     y <- na.omit(y)
@@ -283,11 +198,6 @@ above80 <- function(y) {
 }
 
 above80(airQuality$Temp)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [[1]]
 ##  [1] 81 84 85 82 87 90 87 93 92 82 83 84 85 81 84 83 83 88 92 92 89 82 81
 ## [24] 91 81 82 84 87 85 81 82 86 85 82 86 88 86 83 81 81 81 82 86 85 87 89
@@ -298,18 +208,13 @@ above80(airQuality$Temp)
 ## [24] 61 57 58 57 67 79 76 78 74 67 79 80 79 77 72 65 73 76 77 76 76 76 75
 ## [47] 78 73 80 77 73 80 74 80 79 77 79 76 78 78 77 72 75 79 80 78 75 73 76
 ## [70] 77 71 71 78 67 76 68 64 71 69 63 70 77 75 76 68
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 highlow <- above80(airQuality$Temp)
 
 high <- highlow[[1]]
 
 low <- highlow[[2]]
-{% endhighlight %}
+```
 
 # Loop Functions #
 
@@ -325,20 +230,10 @@ The last thing for today are the very useful built-in loop functions. These func
 
 Remember the function we made? It can be replaced with an `lapply()` loop.
 
-{% highlight r %}
+```r
 lapply(airQuality, mean, na.rm = TRUE)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Warning in mean.default(X[[i]], ...): argument is not numeric or logical:
 ## returning NA
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## $Ozone
 ## [1] 42.12931
 ## 
@@ -358,111 +253,76 @@ lapply(airQuality, mean, na.rm = TRUE)
 ## [1] 15.80392
 ## 
 ## $Random
-## [1] 0.916601
-{% endhighlight %}
+## [1] 0.9840097
+```
 
 # sapply() #
 
 Alternatively we can try `sapply()`. This will return a named numeric vector (simpified from a list)
 
-{% highlight r %}
+```r
 sapply(airQuality, mean, na.rm = TRUE)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Warning in mean.default(X[[i]], ...): argument is not numeric or logical:
 ## returning NA
-{% endhighlight %}
-
-
-
-{% highlight text %}
-##      Ozone    Solar.R       Wind       Temp      Month        Day 
-##  42.129310 185.931507   9.957516  77.882353         NA  15.803922 
-##     Random 
-##   0.916601
-{% endhighlight %}
+##       Ozone     Solar.R        Wind        Temp       Month         Day 
+##  42.1293103 185.9315068   9.9575163  77.8823529          NA  15.8039216 
+##      Random 
+##   0.9840097
+```
 
 # apply() #
 
 `apply()` first coerces your dataframe to a matrix, which means all the columns must have the same type. Because our dataframe does not meet this requirement, I'll be taking a subset of the data. However normally this function would be used with matrices.
 
 
-{% highlight r %}
+```r
 apply(airQuality[,c(-5)], 2, sd, na.rm = TRUE)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##     Ozone   Solar.R      Wind      Temp       Day    Random 
-## 32.987885 90.058422  3.523001  9.465270  8.864520  2.091644
-{% endhighlight %}
-
-
-
-{% highlight r %}
+## 32.987885 90.058422  3.523001  9.465270  8.864520  1.969605
 
 apply(airQuality[,c(-5)], 1, sd, na.rm = TRUE)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-##   [1]  72.89058  46.94296  58.69988 121.77277  25.62174  25.75497 115.47911
-##   [8]  38.64267  21.34867  81.09362  30.02192  98.62413 112.61584 105.66532
-##  [15]  27.26847 129.50176 116.47159  31.26497 123.08330  23.93098  21.81966
-##  [22] 123.51997  23.04112  33.19412  26.94703 110.01967  25.26733  22.88824
-##  [29]  92.82220  84.03591 104.86704 122.41928 122.31465 102.42537  79.76670
-##  [36]  94.18712 111.56434  51.01858 116.07814 110.38572 123.47021 109.27081
-##  [43] 105.86196  58.30500 140.07391 135.54122  72.33150 106.82007  23.63969
-##  [50]  46.01597  53.22244  63.11980  33.84056  41.67048 103.81005  55.83172
-##  [57]  53.47395  29.03317  42.86913  29.24985  57.85399 106.70907  95.40798
-##  [64]  91.31892  48.18947  67.71641 120.77618 105.84699 102.34370 104.07476
-##  [71]  67.97639  60.74067 101.58831  66.48642 121.75326  30.67241  98.43243
-##  [78] 104.27405 107.64244  72.14305  81.66779  26.80088 107.47906 122.58368
-##  [85] 109.45345  84.18191  35.62429  36.17203  79.75871 103.09283  93.26686
-##  [92]  94.07138  38.88395  29.95196  38.00552  43.19716  35.16671  41.00030
-##  [99]  99.41880  87.31363  81.25121  94.66409  59.49559  73.33740 104.78695
-## [106]  59.10313  35.31902  32.01702  31.20583  45.29166  91.96314  70.91207
-## [113]  98.68951  25.94546 105.50772  78.26531  97.84691  80.28066  64.05905
-## [120]  75.83915  86.56595  88.41150  70.34087  68.32943  77.89078  72.86685
-## [127]  75.04048  43.14471  39.50083  97.28408  85.08832  88.34328  99.40968
-## [134]  89.14843  99.03010  90.96073  25.09182  44.32411  89.59789  84.73321
-## [141]  27.09205  90.80568  77.70208  91.01537  25.24025  52.22038  26.51072
-## [148]  21.49442  72.38703  58.93778  72.25072  50.24947  83.25093
-{% endhighlight %}
+##   [1]  72.82270  47.23650  59.37151 121.62190  24.84774  26.36542 115.67801
+##   [8]  38.40799  21.54229  81.28748  30.96865  98.78830 112.67089 105.33482
+##  [15]  26.06268 129.50212 116.96760  30.41116 123.01349  23.49386  21.77755
+##  [22] 123.18123  21.93297  33.76490  27.92711 109.99494  23.57278  22.99182
+##  [29]  93.55545  84.47980 105.21199 122.09558 122.80170 102.05193  79.94285
+##  [36]  94.19656 111.30217  51.79243 116.17630 110.39896 123.98668 108.77720
+##  [43] 105.49187  57.91526 139.74419 135.90928  72.64085 106.43035  23.10204
+##  [50]  47.45831  53.64691  62.60415  34.39119  42.17424 104.44171  55.94074
+##  [57]  54.14359  28.78309  43.28784  28.37771  57.90655 106.88412  95.12412
+##  [64]  91.66259  48.21788  67.74415 120.33248 105.71376 102.17632 104.09465
+##  [71]  68.53206  60.21272 102.35465  65.89063 121.89362  30.07331  98.23169
+##  [78] 103.76614 107.19162  71.03225  81.71409  27.04795 107.51568 123.32384
+##  [85] 110.08362  84.38543  36.13764  36.37102  79.16091 102.96910  93.30029
+##  [92]  94.09817  39.48974  30.45752  37.68110  42.68174  35.07430  40.31110
+##  [99]  99.76131  87.38370  81.39169  94.11566  59.85649  72.74146 104.86862
+## [106]  59.22848  35.14605  32.27141  32.23079  45.22937  92.05330  70.57883
+## [113]  98.45452  25.29983 104.64771  78.81379  97.84441  79.33138  64.18218
+## [120]  75.31127  86.26419  87.84973  70.58833  69.42031  76.89533  72.66027
+## [127]  74.43070  42.60674  40.47040  97.39282  84.61841  88.89872  99.49476
+## [134]  88.87661  99.30527  91.12215  25.12572  44.34830  89.09724  85.00021
+## [141]  27.43158  90.02379  77.34522  90.78009  24.87064  52.91799  27.15257
+## [148]  20.40687  72.09858  59.95946  71.92740  50.08571  83.41606
+```
 
 # mapply #
 
 `mapply` is a multivariate apply (like `lapply`) that applies a function over a set of arguments.
 
-{% highlight r %}
+```r
 mapply(range, airQuality[,c(1,3,6)], na.rm = TRUE)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##      Ozone Wind Day
 ## [1,]     1  1.7   1
 ## [2,]   168 20.7  31
-{% endhighlight %}
+```
 
 # tapply #
 
 `tapply` is used to apply a function over subsets of a vector. It takes two arguements: a vector to apply to function on and a factor variable that subsets the vector. It will simplify the result, like sapply. 
 
 
-{% highlight r %}
+```r
 tapply(airQuality$Ozone, airQuality$Month, range, na.rm = TRUE)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## $Aug
 ## [1]   9 168
 ## 
@@ -477,5 +337,5 @@ tapply(airQuality$Ozone, airQuality$Month, range, na.rm = TRUE)
 ## 
 ## $Sep
 ## [1]  7 96
-{% endhighlight %}
+```
 

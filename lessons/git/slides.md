@@ -67,6 +67,6 @@ git config --list
 ## Generate these slides using (using R): ##
 
 
-{% highlight r %}
+```r
 rmarkdown::render('slides.Rmd')
-{% endhighlight %}
+```

@@ -111,7 +111,7 @@ have it change the numbering for you. These can all be fixed by using
 > Example code:
 
 
-{% highlight r %}
+```r
     library(captioner)
     tabNums <- captioner(prefix = 'Table')
     tabNums('tab1', 'Caption for table 1')
@@ -124,7 +124,7 @@ have it change the numbering for you. These can all be fixed by using
     ## cite in text using `r figNums('fig1', display = 'cite')`
     ## Include the caption for the figure in the code chunk
     ## using fig.cap=`r figNums('fig1')`
-{% endhighlight %}
+```
 
 ## `render` ##
 

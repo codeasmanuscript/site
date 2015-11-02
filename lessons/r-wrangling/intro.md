@@ -56,12 +56,12 @@ command, use the `?` command along with the command you need help with (eg.
 The one I'm going to use is the `swiss` dataset.
 
 
-{% highlight r %}
+```r
 ## Export/save to file
 write.csv(swiss, file = 'swiss.csv')
 ## Import/read from file
 ds <- read.csv('swiss.csv')
-{% endhighlight %}
+```
 
 ## Viewing your data
 
@@ -73,13 +73,8 @@ column names and types).  `summary()` shows a quick description of the summary
 statistics (means, median, frequency) for each of your columns.
 
 
-{% highlight r %}
+```r
 head(ds)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##              X Fertility Agriculture Examination Education Catholic
 ## 1   Courtelary      80.2        17.0          15        12     9.96
 ## 2     Delemont      83.1        45.1           6         9    84.84
@@ -94,31 +89,11 @@ head(ds)
 ## 4             20.3
 ## 5             20.6
 ## 6             26.6
-{% endhighlight %}
-
-
-
-{% highlight r %}
 names(ds)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] "X"                "Fertility"        "Agriculture"     
 ## [4] "Examination"      "Education"        "Catholic"        
 ## [7] "Infant.Mortality"
-{% endhighlight %}
-
-
-
-{% highlight r %}
 str(ds)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## 'data.frame':	47 obs. of  7 variables:
 ##  $ X               : Factor w/ 47 levels "Aigle","Aubonne",..: 8 9 12 26 28 34 5 13 15 38 ...
 ##  $ Fertility       : num  80.2 83.1 92.5 85.8 76.9 76.1 83.8 92.4 82.4 82.9 ...
@@ -127,17 +102,7 @@ str(ds)
 ##  $ Education       : int  12 9 5 7 15 7 7 8 7 13 ...
 ##  $ Catholic        : num  9.96 84.84 93.4 33.77 5.16 ...
 ##  $ Infant.Mortality: num  22.2 22.2 20.2 20.3 20.6 26.6 23.6 24.9 21 24.4 ...
-{% endhighlight %}
-
-
-
-{% highlight r %}
 summary(ds)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##         X        Fertility      Agriculture     Examination   
 ##  Aigle   : 1   Min.   :35.00   Min.   : 1.20   Min.   : 3.00  
 ##  Aubonne : 1   1st Qu.:64.70   1st Qu.:35.90   1st Qu.:12.00  
@@ -154,7 +119,7 @@ summary(ds)
 ##  3rd Qu.:12.00   3rd Qu.: 93.125   3rd Qu.:21.70   
 ##  Max.   :53.00   Max.   :100.000   Max.   :26.60   
 ## 
-{% endhighlight %}
+```
 
 # Wrangling your data, `dplyr` style
 
@@ -168,13 +133,8 @@ left-hand side, just like how a plumbing pipe works for water.  `tbl_df` makes
 the object into a `tbl` class, making printing of the output nicer.
 
 
-{% highlight r %}
+```r
 library(dplyr)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## 
 ## Attaching package: 'dplyr'
 ## 
@@ -185,20 +145,10 @@ library(dplyr)
 ## The following objects are masked from 'package:base':
 ## 
 ##     intersect, setdiff, setequal, union
-{% endhighlight %}
-
-
-
-{% highlight r %}
 library(tidyr)
 
 ## Compare
 head(ds)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##              X Fertility Agriculture Examination Education Catholic
 ## 1   Courtelary      80.2        17.0          15        12     9.96
 ## 2     Delemont      83.1        45.1           6         9    84.84
@@ -213,18 +163,8 @@ head(ds)
 ## 4             20.3
 ## 5             20.6
 ## 6             26.6
-{% endhighlight %}
-
-
-
-{% highlight r %}
 ## With:
 tbl_df(ds)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Source: local data frame [47 x 7]
 ## 
 ##               X Fertility Agriculture Examination Education Catholic
@@ -241,19 +181,10 @@ tbl_df(ds)
 ## 10       Sarine      82.9        45.2          16        13    91.38
 ## ..          ...       ...         ...         ...       ...      ...
 ## Variables not shown: Infant.Mortality (dbl)
-{% endhighlight %}
 
-
-
-{% highlight r %}
 ## Now put the tbl dataset into a new object
 ds2 <- tbl_df(ds)
 ds2
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Source: local data frame [47 x 7]
 ## 
 ##               X Fertility Agriculture Examination Education Catholic
@@ -270,7 +201,7 @@ ds2
 ## 10       Sarine      82.9        45.2          16        13    91.38
 ## ..          ...       ...         ...         ...       ...      ...
 ## Variables not shown: Infant.Mortality (dbl)
-{% endhighlight %}
+```
 
 ## Select columns
 
@@ -280,14 +211,9 @@ use of the `%>%` operator.  This allows you to chain commands together, letting
 you do more with only a few commands.
 
 
-{% highlight r %}
+```r
 ds2 %>% 
     select(Education, Catholic, Fertility)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Source: local data frame [47 x 3]
 ## 
 ##    Education Catholic Fertility
@@ -303,7 +229,7 @@ ds2 %>%
 ## 9          7    97.67      82.4
 ## 10        13    91.38      82.9
 ## ..       ...      ...       ...
-{% endhighlight %}
+```
 
 The real power with using the `select()` function comes when you combine it with
 [regular expressions (regexp)](http://www.regular-expressions.info/), or rather pattern
@@ -319,14 +245,9 @@ regexp syntax are nearly a language to themselves, so use
 Ok, so lets say you want to search for variables that have certain patterns:
 
 
-{% highlight r %}
+```r
 ds2 %>% 
     select(contains('Edu'), starts_with('Cath'))
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Source: local data frame [47 x 2]
 ## 
 ##    Education Catholic
@@ -342,19 +263,10 @@ ds2 %>%
 ## 9          7    97.67
 ## 10        13    91.38
 ## ..       ...      ...
-{% endhighlight %}
 
-
-
-{% highlight r %}
 ## Or more simplified
 ds2 %>% 
     select(matches('Edu|Cath'))
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Source: local data frame [47 x 2]
 ## 
 ##    Education Catholic
@@ -370,7 +282,7 @@ ds2 %>%
 ## 9          7    97.67
 ## 10        13    91.38
 ## ..       ...      ...
-{% endhighlight %}
+```
 
 You can see that if you have many variables that have a common structure to
 their name, you can quickly select all those variables by using functions such
@@ -382,14 +294,9 @@ You can rename columns using the `rename` command (the new name is on the left
 hand side, so `newname = oldname`).
 
 
-{% highlight r %}
+```r
 ds2 %>% 
     rename(County = X)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Source: local data frame [47 x 7]
 ## 
 ##          County Fertility Agriculture Examination Education Catholic
@@ -406,7 +313,7 @@ ds2 %>%
 ## 10       Sarine      82.9        45.2          16        13    91.38
 ## ..          ...       ...         ...         ...       ...      ...
 ## Variables not shown: Infant.Mortality (dbl)
-{% endhighlight %}
+```
 
 ## Filter rows
 
@@ -416,15 +323,10 @@ if 'Examination' is equal to 15.  A single `=` is used for something else
 (assigning things to objects or using them in functions/commands).
 
 
-{% highlight r %}
+```r
 ## For continuous/number data
 ds2 %>% 
     filter(Catholic < 20, Examination == 15)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Source: local data frame [3 x 7]
 ## 
 ##            X Fertility Agriculture Examination Education Catholic
@@ -433,26 +335,17 @@ ds2 %>%
 ## 2    Yverdon      65.4        49.5          15         8     6.10
 ## 3 Val de Ruz      77.6        37.6          15         7     4.97
 ## Variables not shown: Infant.Mortality (dbl)
-{% endhighlight %}
 
-
-
-{% highlight r %}
 ## Or for 'string' (words or letters) data
 ds2 %>%
     filter(X == 'Aigle')
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Source: local data frame [1 x 7]
 ## 
 ##        X Fertility Agriculture Examination Education Catholic
 ##   (fctr)     (dbl)       (dbl)       (int)     (int)    (dbl)
 ## 1  Aigle      64.1          62          21        12     8.52
 ## Variables not shown: Infant.Mortality (dbl)
-{% endhighlight %}
+```
 
 ## Create new columns or clean up existing ones
 
@@ -461,15 +354,10 @@ If you want to create a new column, you use the `mutate` command.  The
 on the condition.
 
 
-{% highlight r %}
+```r
 ds2 %>%
     mutate(Testing = 'yes',
            Infertile = ifelse(Fertility < 50, 'yes', 'no'))
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Source: local data frame [47 x 9]
 ## 
 ##               X Fertility Agriculture Examination Education Catholic
@@ -487,7 +375,7 @@ ds2 %>%
 ## ..          ...       ...         ...         ...       ...      ...
 ## Variables not shown: Infant.Mortality (dbl), Testing (chr), Infertile
 ##   (chr)
-{% endhighlight %}
+```
 
 However, it's fairly common that you need to do some data janitorial work by
 cleaning up an existing column. For example, in a dataset with a 'Sex' variable,
@@ -499,17 +387,12 @@ some values had data entry errors in spelling, such as 'fmale' when it should be
 '*g*lobablly *sub*stitute a pattern with the replacement.
 
 
-{% highlight r %}
+```r
 ds2 %>% 
     mutate(
         X = gsub(pattern = '^G', replacement = 'J', X),
         X = gsub(pattern = 'e$', replacement = '', X)
         )
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Source: local data frame [47 x 7]
 ## 
 ##               X Fertility Agriculture Examination Education Catholic
@@ -526,7 +409,7 @@ ds2 %>%
 ## 10        Sarin      82.9        45.2          16        13    91.38
 ## ..          ...       ...         ...         ...       ...      ...
 ## Variables not shown: Infant.Mortality (dbl)
-{% endhighlight %}
+```
 
 Notice the `^` and `$` characters. Those are special syntax symbols used in
 regexp commands. We introduced them above, but we'll quickly go over
@@ -537,14 +420,9 @@ means for all "e" that are at the end of a string. Or let"s say that all "mont",
 here.
 
 
-{% highlight r %}
+```r
 ds2 %>% 
     mutate(X = gsub('mont|mnt|mout', 'ment', X, ignore.case = TRUE))
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Source: local data frame [47 x 7]
 ## 
 ##                X Fertility Agriculture Examination Education Catholic
@@ -561,7 +439,7 @@ ds2 %>%
 ## 10        Sarine      82.9        45.2          16        13    91.38
 ## ..           ...       ...         ...         ...       ...      ...
 ## Variables not shown: Infant.Mortality (dbl)
-{% endhighlight %}
+```
 
 Regular expressions are incredibly powerful, but also can be confusing. Make
 sure to check out [our resources page](/lessons/resources/) for links to sites
@@ -577,18 +455,13 @@ actually conducting it.  `arrange` sorts/orders/re-arranges the column Education
 in ascending order.
 
 
-{% highlight r %}
+```r
 ds2 %>%
   filter(Catholic > 20) %>%
   select(County = X, ## This renames the variable, just like the rename() command
          Education, Fertility, Agriculture) %>%
   arrange(Education) %>%
   mutate(infertile = ifelse(Fertility < 50, 'yes', 'no'))
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Source: local data frame [21 x 5]
 ## 
 ##          County Education Fertility Agriculture infertile
@@ -604,7 +477,7 @@ ds2 %>%
 ## 9      Martigwy         6      70.5        78.2        no
 ## 10      Moutier         7      85.8        36.5        no
 ## ..          ...       ...       ...         ...       ...
-{% endhighlight %}
+```
 
 ## Re-organize your data (using `tidyr`)
 
@@ -614,16 +487,11 @@ does.  Note that you can remove a column by having a minus `-` sign in front of
 a variable when you use `select`.
 
 
-{% highlight r %}
+```r
 ## Compare this:
 ds2 %>%
   select(-Infant.Mortality) %>%
   rename(County = X)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Source: local data frame [47 x 6]
 ## 
 ##          County Fertility Agriculture Examination Education Catholic
@@ -639,21 +507,12 @@ ds2 %>%
 ## 9       Gruyere      82.4        53.3          12         7    97.67
 ## 10       Sarine      82.9        45.2          16        13    91.38
 ## ..          ...       ...         ...         ...       ...      ...
-{% endhighlight %}
 
-
-
-{% highlight r %}
 ## With this:
 ds2 %>%
   select(-Infant.Mortality) %>%
   rename(County = X) %>%
   gather(Measure, Value, -County)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Source: local data frame [235 x 3]
 ## 
 ##          County   Measure Value
@@ -669,22 +528,13 @@ ds2 %>%
 ## 9       Gruyere Fertility  82.4
 ## 10       Sarine Fertility  82.9
 ## ..          ...       ...   ...
-{% endhighlight %}
 
-
-
-{% highlight r %}
 ## And back again:
 ds2 %>%
   select(-Infant.Mortality) %>%
   rename(County = X) %>%
   gather(Measure, Value, -County) %>%
   spread(Measure, Value)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Source: local data frame [47 x 6]
 ## 
 ##        County Fertility Agriculture Examination Education Catholic
@@ -700,7 +550,7 @@ ds2 %>%
 ## 9    Delemont      83.1        45.1           6         9    84.84
 ## 10  Echallens      68.3        72.6          18         2    24.20
 ## ..        ...       ...         ...         ...       ...      ...
-{% endhighlight %}
+```
 
 ## Summarise variables
 
@@ -711,18 +561,13 @@ only contain the new variable(s) created, in this case the mean, as well as the
 grouping variable.
 
 
-{% highlight r %}
+```r
 ds2 %>%
   select(-X) %>%
   gather(Measure, Value) %>%
   group_by(Measure) %>%
   summarise(mean = mean(Value),
             sampleSize = n())
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Source: local data frame [6 x 3]
 ## 
 ##            Measure     mean sampleSize
@@ -733,7 +578,7 @@ ds2 %>%
 ## 4        Education 10.97872         47
 ## 5         Catholic 41.14383         47
 ## 6 Infant.Mortality 19.94255         47
-{% endhighlight %}
+```
 
 ## Other useful and powerful examples
 
@@ -747,7 +592,7 @@ package).  If you want more details on how to use this set up,
 [check out my blog post about it](http://www.lukewjohnston.com/blog/loops-forests-multiple-linear-regressions/).
 
 
-{% highlight r %}
+```r
 ds2 %>%
     select(-X) %>%  
     gather(Indep, Xvalue, Fertility, Agriculture) %>%
@@ -755,10 +600,5 @@ ds2 %>%
     group_by(Dep, Indep) %>% 
     do(lm(Yvalue ~ Xvalue + Infant.Mortality + Examination, data = .) %>% 
            broom::tidy())
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## Error in tidy.lm(.): could not find function "is"
-{% endhighlight %}
+```

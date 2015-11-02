@@ -30,14 +30,14 @@ types: character, numeric, integer, complex, and logical
 > Example code:
 
 
-{% highlight r %}
+```r
 a <- c(0.4, 1.2)         # numeric
 b <- c(TRUE, FALSE)      # logical
 c <- c("a","b","c")      # character
 d <- c(1L, 2L)           # integer
 e <- 1:10                # integer
 f <- c(1+0i, 2+4i)       # complex
-{% endhighlight %}
+```
 
 # Basic R object types (classes) #
 
@@ -56,69 +56,24 @@ from the vector.
 > Example code:
 
 
-{% highlight r %}
+```r
 vector("numeric", length=10)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##  [1] 0 0 0 0 0 0 0 0 0 0
-{% endhighlight %}
-
-
-
-{% highlight r %}
 x <- c(1:10)
 ## Select the first element
 x[1]
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 1
-{% endhighlight %}
-
-
-
-{% highlight r %}
 ## Select the first and second element
 x[1:2]
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 1 2
-{% endhighlight %}
-
-
-
-{% highlight r %}
 ## select the first and third element
 x[c(1,3)]
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 1 3
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 ## Check out long the vector is
 length(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 10
-{% endhighlight %}
+```
 
 ## `list()`, `[[`, `$` ##
 
@@ -131,14 +86,9 @@ command.
 > Example code:
 
 
-{% highlight r %}
+```r
 x <- list(num = 1, char = "a", logic = TRUE, complex = 1+4i)
 x
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## $num
 ## [1] 1
 ## 
@@ -150,58 +100,18 @@ x
 ## 
 ## $complex
 ## [1] 1+4i
-{% endhighlight %}
-
-
-
-{% highlight r %}
 ## Use [[ to select the contents inside the list
 x[[1]]
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 1
-{% endhighlight %}
-
-
-
-{% highlight r %}
 x[[2]]
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] "a"
-{% endhighlight %}
-
-
-
-{% highlight r %}
 x[[3]]
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] TRUE
-{% endhighlight %}
-
-
-
-{% highlight r %}
 x2 <- list(
     vector = c(1:10), dataframe = data.frame(1:10, 1:10),
     char.list = list('a', 'b')
     )
 x2
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## $vector
 ##  [1]  1  2  3  4  5  6  7  8  9 10
 ## 
@@ -224,45 +134,15 @@ x2
 ## 
 ## $char.list[[2]]
 ## [1] "b"
-{% endhighlight %}
-
-
-
-{% highlight r %}
 ## Use the [ to select the vector number within the list item.
 x2[[1]]
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##  [1]  1  2  3  4  5  6  7  8  9 10
-{% endhighlight %}
-
-
-
-{% highlight r %}
 x2[[1]][1]
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 1
-{% endhighlight %}
-
-
-
-{% highlight r %}
 ## Select a list item specifically (if it is named)
 x2$vector
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##  [1]  1  2  3  4  5  6  7  8  9 10
-{% endhighlight %}
+```
 
 ## `matrix()`, `dim()`, `nrow()`, `ncol()`, `rbind()`, `cbind()` ##
 
@@ -277,172 +157,57 @@ the `dim()` attribute or by using `cbind()` and `rbind()`.
 > Example code:
 
 
-{% highlight r %}
+```r
 x <- matrix(1:6, nrow=2, ncol=3)
 x
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##      [,1] [,2] [,3]
 ## [1,]    1    3    5
 ## [2,]    2    4    6
-{% endhighlight %}
-
-
-
-{% highlight r %}
 # The first row, third column
 x[1,3]
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 5
-{% endhighlight %}
-
-
-
-{% highlight r %}
 # The first two rows and second and third column
 x[1:2, 2:3]
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##      [,1] [,2]
 ## [1,]    3    5
 ## [2,]    4    6
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 ## Check the attributes of the matrix
 dim(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 2 3
-{% endhighlight %}
-
-
-
-{% highlight r %}
 ncol(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 3
-{% endhighlight %}
-
-
-
-{% highlight r %}
 nrow(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 2
-{% endhighlight %}
-
-
-
-{% highlight r %}
 attributes(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## $dim
 ## [1] 2 3
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 ## Creating a matrix from a vector
 x <- 1:10
 x
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##  [1]  1  2  3  4  5  6  7  8  9 10
-{% endhighlight %}
-
-
-
-{% highlight r %}
 dim(x) <- c(2,5)
 x
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##      [,1] [,2] [,3] [,4] [,5]
 ## [1,]    1    3    5    7    9
 ## [2,]    2    4    6    8   10
-{% endhighlight %}
-
-
-
-{% highlight r %}
 dim(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 2 5
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 ## Using rbind ('row bind') or cbind ('column bind')
 x <- 1:3
 y <- 10:12
 cbind(x, y)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##      x  y
 ## [1,] 1 10
 ## [2,] 2 11
 ## [3,] 3 12
-{% endhighlight %}
-
-
-
-{% highlight r %}
 rbind(x, y)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##   [,1] [,2] [,3]
 ## x    1    2    3
 ## y   10   11   12
-{% endhighlight %}
+```
 
 ## `factor()`, `table()` ##
 
@@ -455,59 +220,24 @@ Factors are also treated differently by modelling functions like `lm()` and
 > Example code:
 
 
-{% highlight r %}
+```r
 x <- factor(c("yes", "yes", "no", "no", "yes"))
 x
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] yes yes no  no  yes
 ## Levels: no yes
-{% endhighlight %}
-
-
-
-{% highlight r %}
 table(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## x
 ##  no yes 
 ##   2   3
-{% endhighlight %}
-
-
-
-{% highlight r %}
 unclass(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 2 2 1 1 2
 ## attr(,"levels")
 ## [1] "no"  "yes"
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 ## Converting the factor into a numeric
 as.numeric(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 2 2 1 1 2
-{% endhighlight %}
+```
 
 ## `data.frame()`, `read.table()`, `read.csv()`, `[[`, `[`, `$` ##
 
@@ -522,157 +252,52 @@ of the data, dataframes can be imported from an external files using the
 `read.table()` or `read.csv`, or can be created using `data.frame()`.
 
 
-{% highlight r %}
+```r
 x <- data.frame(
     foo = 1:4, bar = c(T,T,F,F), char = c('a', 'b', 'b', 'a')
     )
 x
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##   foo   bar char
 ## 1   1  TRUE    a
 ## 2   2  TRUE    b
 ## 3   3 FALSE    b
 ## 4   4 FALSE    a
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 ## Select certain rows and columns: 
 ## - 1:2 rows with 2:3 columns
 x[c(1:2), c(2:3)]
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##    bar char
 ## 1 TRUE    a
 ## 2 TRUE    b
-{% endhighlight %}
-
-
-
-{% highlight r %}
 ## - Select columns by name
 x[c('foo', 'bar')]
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##   foo   bar
 ## 1   1  TRUE
 ## 2   2  TRUE
 ## 3   3 FALSE
 ## 4   4 FALSE
-{% endhighlight %}
-
-
-
-{% highlight r %}
 ## - Select rows by number and columns by name
 x[c(2:3), 'foo']
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 2 3
-{% endhighlight %}
-
-
-
-{% highlight r %}
 ## - Select column directly
 x$bar
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1]  TRUE  TRUE FALSE FALSE
-{% endhighlight %}
-
-
-
-{% highlight r %}
 ## - Select a single column using the list [[ select command
 x[[2]]
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1]  TRUE  TRUE FALSE FALSE
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 ## Check the attributes
 dim(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 4 3
-{% endhighlight %}
-
-
-
-{% highlight r %}
 nrow(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 4
-{% endhighlight %}
-
-
-
-{% highlight r %}
 ncol(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 3
-{% endhighlight %}
-
-
-
-{% highlight r %}
 length(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 3
-{% endhighlight %}
-
-
-
-{% highlight r %}
 class(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] "data.frame"
-{% endhighlight %}
+```
 
 
 # Attributes of objects in R #
@@ -684,78 +309,33 @@ be modified with the `attributes()` and other functions.
 > Example code
 
 
-{% highlight r %}
+```r
 x <- 1:3
 names(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## NULL
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 ## Modify names attribute
 names(x) <- c("alpha", "beta", "gamma")
 x
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## alpha  beta gamma 
 ##     1     2     3
-{% endhighlight %}
-
-
-
-{% highlight r %}
 names(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] "alpha" "beta"  "gamma"
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 ## Add to the class attribute
 class(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] "integer"
-{% endhighlight %}
-
-
-
-{% highlight r %}
 class(x) <- c('my-own-class', class(x))
 class(x)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] "my-own-class" "integer"
-{% endhighlight %}
+```
 
 # Looking for help in R #
 
 > Example code:
 
 
-{% highlight r %}
+```r
 ## Help for functions
 help('c')
 help('class')
@@ -765,7 +345,7 @@ help('class')
 ## Help for specific packages
 help(package = 'ggplot2')
 help(package = 'rmarkdown')
-{% endhighlight %}
+```
 
 # Using R packages #
 
@@ -775,7 +355,7 @@ R packages that extend R's capabilities (such as `ggplot2`, our next lesson).
 > Example code:
 
 
-{% highlight r %}
+```r
 ## Check what's loaded
 search()
 
@@ -787,7 +367,7 @@ library(dplyr)
 ## Install a package
 install.packages('ggplot2')
 install.packages('rmarkdown')
-{% endhighlight %}
+```
 
 # Working Directory #
 
@@ -798,7 +378,7 @@ where it will place any files you output.
 > Example code:
 
 
-{% highlight r %}
+```r
 ## Check the current directory
 getwd()
 
@@ -807,7 +387,7 @@ getwd('path/to/new/directory')
 
 ## Create a directory
 dir.create('path')
-{% endhighlight %}
+```
 
 # Importing tabular data #
 
@@ -816,14 +396,14 @@ spreadsheet). The two most commonly-used functions used to import tabular data
 into R are `read.table()` and `read.csv()`.
 
 
-{% highlight r %}
+```r
 # \t is the regular expression for the tab key. This means our table is
 # tab-delimited (tab-separated)
 data <- read.table("file_name.txt", header = FALSE, sep = "\t")
 
 #.csv is a comma-separated table 
 data2 <- read.csv("file_name.csv", header = TRUE)
-{% endhighlight %}
+```
 
 # Saving/outputting tabular data #
 
@@ -833,13 +413,13 @@ This is where you use `write.table()` or `write.csv()`.
 > Example code:
 
 
-{% highlight r %}
+```r
 ## Comma separated file
 write.table(
     data, file = "myfile.csv", sep = ",", row.names = TRUE, col.names = FALSE
     )
 write.csv(data, file = 'myfile.csv')
-{% endhighlight %}
+```
 
 # R operators and special symbols #
 
@@ -889,10 +469,10 @@ identical(x, y) | whether x and y are the same
 > Example code:
 
 
-{% highlight r %}
+```r
 # commenting in R is easy! Everything past a # means that R will ignore whatever
 # is written there.
-{% endhighlight %}
+```
 
 
 # Functions #
@@ -911,16 +491,16 @@ function and save yourself time and effort later on!
 > Example code:
 
 
-{% highlight r %}
+```r
 f <- function(argument) {
     ## do something here 
     commands
     more commands
 }
-{% endhighlight %}
+```
 
 
-{% highlight r %}
+```r
 
 ## make a function called above10 with the argument x that subsets all variables
 ## of x that are greater than 10
@@ -947,7 +527,7 @@ columnmean <- function (y, remove.NA = TRUE) {
   }
   means
 }
-{% endhighlight %}
+```
 
 ## `if .. else`, `ifelse` ##
 
@@ -958,7 +538,7 @@ used within functions.
 > Example code:
 
 
-{% highlight r %}
+```r
 
 x <- 1:20
 
@@ -978,10 +558,10 @@ if (length(x) < 10) {
 }
 
 ifelse(x < 10, 'yes', 'no')
-{% endhighlight %}
+```
 
 
-{% highlight r %}
+```r
 y <- c()
 if (length(x) > 3) {
   y <- 10
@@ -989,17 +569,7 @@ if (length(x) > 3) {
   y <- 0
 }
 y
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 0
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 ## Or
 y <- if(length(x) > 3) {
@@ -1008,13 +578,8 @@ y <- if(length(x) > 3) {
   0
 }
 y
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 0
-{% endhighlight %}
+```
 
 ## `for (x in list)` ##
 
@@ -1025,15 +590,10 @@ data-intensive tasks.
 > Example code:
 
 
-{% highlight r %}
+```r
 for (i in 1:10) {
   print (i)
 }
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 1
 ## [1] 2
 ## [1] 3
@@ -1044,11 +604,6 @@ for (i in 1:10) {
 ## [1] 8
 ## [1] 9
 ## [1] 10
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 ## Nested loops
 x <- matrix(1:6, 2, 3)
@@ -1057,18 +612,13 @@ for (i in seq_len(nrow(x))) {
     print (x[i, j])
   }
 }
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 1
 ## [1] 3
 ## [1] 5
 ## [1] 2
 ## [1] 4
 ## [1] 6
-{% endhighlight %}
+```
 
 # Loop Functions #
 
@@ -1093,38 +643,23 @@ a name; other arguments as necessary. It will always return a list object.
 > Example code:
 
 
-{% highlight r %}
+```r
 x <- list(a=1:5, b=rnorm(10), c=rnorm(20,1), d=rnorm(100,5))
 lapply(x, mean)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## $a
 ## [1] 3
 ## 
 ## $b
-## [1] -0.08705441
+## [1] 0.03196616
 ## 
 ## $c
-## [1] 0.8056751
+## [1] 0.6059004
 ## 
 ## $d
-## [1] 5.003501
-{% endhighlight %}
-
-
-
-{% highlight r %}
+## [1] 4.991253
 
 x <- list(a=matrix(1:4,2,2), b=matrix(1:6,3,2))
 x
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## $a
 ##      [,1] [,2]
 ## [1,]    1    3
@@ -1135,25 +670,15 @@ x
 ## [1,]    1    4
 ## [2,]    2    5
 ## [3,]    3    6
-{% endhighlight %}
-
-
-
-{% highlight r %}
 ## Use an anonymous function with the argument `ele` and then define that
 ## argument.
 lapply(x, function(ele) ele[ ,1]) 
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## $a
 ## [1] 1 2
 ## 
 ## $b
 ## [1] 1 2 3
-{% endhighlight %}
+```
 
 ## `sapply()` ##
 
@@ -1165,17 +690,12 @@ same length, a matrix is returned. Otherwise a list is returned.
 > Example code:
 
 
-{% highlight r %}
+```r
 x <- list(a=1:5, b=rnorm(10), c=rnorm(20,1), d=rnorm(100,5))
 sapply(x, mean)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##          a          b          c          d 
-## 3.00000000 0.01466929 0.91543331 5.03388351
-{% endhighlight %}
+## 3.00000000 0.04576579 0.97643692 4.87379248
+```
 
 ## `apply()` ##
 
@@ -1186,81 +706,46 @@ means do the function to the columns.
 > Example code:
 
 
-{% highlight r %}
+```r
 x <- matrix (rnorm(200), 20, 10)
 # keeping number of columns and collapsing rows. This gives a vector of the
 # means of columns.
 apply(x, 2, mean) 
-{% endhighlight %}
-
-
-
-{% highlight text %}
-##  [1]  0.12347715  0.04770594 -0.23962572  0.03181958 -0.28658551
-##  [6]  0.56491660 -0.10992450 -0.06652284  0.13402639  0.13483184
-{% endhighlight %}
-
-
-
-{% highlight r %}
+##  [1]  0.17125350  0.25014973  0.05637670 -0.23796313  0.31392653
+##  [6]  0.38410844 -0.11645465  0.23821264 -0.04970403 -0.29748247
 
 # this calculates the sum of all rows
 apply(x, 1, sum) 
-{% endhighlight %}
-
-
-
-{% highlight text %}
-##  [1]  1.8147165 -1.2577054  2.5727208 -1.3669601  1.7846913 -2.2291840
-##  [7]  0.4621210  4.0021023  2.6337700 -1.0559236 -1.5868910  4.6012822
-## [13] -5.4770651 -0.1168984 -2.8939953 -0.1784035  4.6166377  0.2221600
-## [19] -0.1469406  0.2821437
-{% endhighlight %}
-
-
-
-{% highlight r %}
+##  [1] -4.4429821 -0.6574368  1.1911371  3.8616414 -2.2587809  7.8326782
+##  [7]  0.6499274  7.3764224  1.3012891 -1.7725843  6.4859628 -1.1623079
+## [13]  2.7518836 -4.4755192  3.7266695 -1.7411285 -4.4297744 -1.3331671
+## [19] -3.0433755  4.3879104
 
 ## Use additional arguments in apply, that it passes to the function quantile.
 y <- matrix(rnorm(200), 20, 10)
 apply(y, 1, quantile, probs = c(0.25, 0.75))
-{% endhighlight %}
-
-
-
-{% highlight text %}
-##           [,1]       [,2]       [,3]         [,4]       [,5]       [,6]
-## 25% -0.7647038 -0.7210468 -0.7600068 -0.003778185 -1.3521756 -0.2174439
-## 75%  0.4123376  0.6791686  0.7951071  0.895761712  0.9357661  0.9783733
+##           [,1]       [,2]       [,3]        [,4]      [,5]      [,6]
+## 25% -0.5813985 -0.4155099 -0.3978411 -0.06204147 0.1816494 0.1391389
+## 75%  0.5445757  1.1493853  1.4713268  0.95988898 0.9294715 0.8546799
 ##           [,7]        [,8]       [,9]      [,10]      [,11]      [,12]
-## 25% -0.2691144 -1.55762093 -0.3051579 -0.3270544 -0.6420960 0.06768242
-## 75%  0.6831129  0.04226876  0.7276672  1.1130333  0.3072559 0.63674347
+## 25% -0.6096415 -0.67954171 -0.7963498 -1.1435226 -0.2180918 -0.5935117
+## 75%  0.8149493  0.07678966  0.2362088  0.3142852  0.7269817  0.4444604
 ##          [,13]      [,14]      [,15]      [,16]      [,17]      [,18]
-## 25% -0.7577007 -0.7888834 -0.4688051 -0.6615460 -0.6491867 -0.5835593
-## 75%  1.1956633  0.5516693  1.1701949  0.7859077  1.0033207  0.8368049
+## 25% -1.0947972 -0.5359842 -1.4454579 0.09282969 -0.2285679 -0.7160392
+## 75% -0.3598023  0.4620311  0.1353984 1.10250081  1.2127786  0.9207038
 ##          [,19]      [,20]
-## 25% -0.3362166 -0.9854436
-## 75%  0.3192613  0.7975759
-{% endhighlight %}
-
-
-
-{% highlight r %}
+## 25% -0.5781012 -0.3674796
+## 75%  0.2874633  1.1798599
 
 # With an array (stacks of matrices: multidimensional).
 # Create an array that looks like a bunch of 2 by 2 matrices and take the mean of
 # those.
 a <- array(rnorm(2*2*10), c(2,2,10)) 
 apply(a, c(1,2), mean) #this keeps the 1st and 2nd dimension
-{% endhighlight %}
-
-
-
-{% highlight text %}
-##             [,1]         [,2]
-## [1,] -0.03276905 -0.004964963
-## [2,]  0.17359854 -0.131615028
-{% endhighlight %}
+##            [,1]        [,2]
+## [1,]  0.3332423 -0.07199605
+## [2,] -0.4199372  0.17350889
+```
 
 ## `mapply()` ##
 
@@ -1268,13 +753,8 @@ apply(a, c(1,2), mean) #this keeps the 1st and 2nd dimension
 a set of arguments.
 
 
-{% highlight r %}
+```r
 mapply(rep, 1:4, 4:1)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [[1]]
 ## [1] 1 1 1 1
 ## 
@@ -1286,18 +766,8 @@ mapply(rep, 1:4, 4:1)
 ## 
 ## [[4]]
 ## [1] 4
-{% endhighlight %}
-
-
-
-{% highlight r %}
 # is the same as
 list(rep(1, 4), rep(2, 3), rep(3, 2), rep(4, 1))
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [[1]]
 ## [1] 1 1 1 1
 ## 
@@ -1309,10 +779,10 @@ list(rep(1, 4), rep(2, 3), rep(3, 2), rep(4, 1))
 ## 
 ## [[4]]
 ## [1] 4
-{% endhighlight %}
+```
 
 
-{% highlight r %}
+```r
 ## create a function called noise that takes the arguments n, mean, and sd and
 ## produces random varibles with those specifications.
 noise<- function(n,mean, sd) {
@@ -1321,75 +791,45 @@ noise<- function(n,mean, sd) {
 
 ## apply the noise function with n=5, mean=1 and sd=2
 noise(5, 1, 2)
-{% endhighlight %}
-
-
-
-{% highlight text %}
-## [1] -0.750147  2.968726  2.636535  2.763283  4.332608
-{% endhighlight %}
-
-
-
-{% highlight r %}
+## [1] 0.7930424 2.4740363 1.1699390 1.6019916 0.9895137
 
 ## apply the noise function for n= 1 to 5, mean = 1 to 5, and sd = 2
 mapply(noise, 1:5, 1:5, 2)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [[1]]
-## [1] 1.039934
+## [1] 1.247853
 ## 
 ## [[2]]
-## [1] -0.463912  3.117271
+## [1] 0.8865116 6.9421407
 ## 
 ## [[3]]
-## [1] 2.935257 4.951166 3.344060
+## [1]  5.044907 -1.076488  3.519662
 ## 
 ## [[4]]
-## [1] 4.5938752 2.2269367 4.8059080 0.1818445
+## [1] 3.929218 3.703124 5.883016 7.454618
 ## 
 ## [[5]]
-## [1]  7.1944041  1.8305581  5.4218587 -0.2811959  4.0780825
-{% endhighlight %}
-
-
-
-{% highlight r %}
+## [1] 6.406565 4.475601 6.538984 2.527339 5.592072
 
 ## which is the same as writing
 list(noise(1,1,2), noise(2,2,2), noise(3,3,2), noise(4,4,2), noise(5,5,2))
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [[1]]
-## [1] 1.153676
+## [1] 0.2882813
 ## 
 ## [[2]]
-## [1] 3.4398032 0.1654232
+## [1] 2.271471 3.320668
 ## 
 ## [[3]]
-## [1] 1.896161 5.242596 3.849094
+## [1] 5.249599 3.318627 3.110832
 ## 
 ## [[4]]
-## [1] 2.189090 3.076175 6.126703 1.883835
+## [1] 6.224037 1.035009 2.433546 5.674936
 ## 
 ## [[5]]
-## [1] 3.026996 4.327652 2.282642 3.456119 3.095467
-{% endhighlight %}
-
-
-
-{% highlight r %}
+## [1] 7.351962 4.979856 4.897077 4.745803 3.608916
 
 # (the outputs are different because our function makes new random varibles each
 # time)
-{% endhighlight %}
+```
 
 ## `tapply()` ##
 
@@ -1399,44 +839,19 @@ simplify the result, like sapply.
 > Example code:
 
 
-{% highlight r %}
+```r
 x <- c(1:30) # make a vector with 30 variables
 f<- gl(3,10) # make a factor variable with 3 levels and 10 reps of each level
 f
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##  [1] 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3
 ## Levels: 1 2 3
-{% endhighlight %}
-
-
-
-{% highlight r %}
 
 # apply the mean function to x, subsetting by f
 tapply(x, f, mean) 
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ##    1    2    3 
 ##  5.5 15.5 25.5
-{% endhighlight %}
-
-
-
-{% highlight r %}
 # apply the range function to x, subsetting by f
 tapply(x, f, range) 
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## $`1`
 ## [1]  1 10
 ## 
@@ -1445,7 +860,7 @@ tapply(x, f, range)
 ## 
 ## $`3`
 ## [1] 21 30
-{% endhighlight %}
+```
 
 # Misc commands #
 
@@ -1457,13 +872,8 @@ particular condition.
 > Example code:
 
 
-{% highlight r %}
+```r
 numvec <- c(2,5,8,9,0,6,7,8,4,5,7,11)
 subset(numvec, numvec < 9 & numvec > 4)
-{% endhighlight %}
-
-
-
-{% highlight text %}
 ## [1] 5 8 6 7 8 5 7
-{% endhighlight %}
+```

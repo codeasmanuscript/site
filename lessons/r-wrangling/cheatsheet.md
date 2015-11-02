@@ -39,13 +39,13 @@ file formats.
 > Example code:
 
 
-{% highlight r %}
+```r
 ## Export
 write.csv(swiss, file = 'swiss.csv')
 
 ## Which is the same as:
 write.table(swiss, file = 'swiss.csv', sep = ',')
-{% endhighlight %}
+```
 
 ## `read.csv` or `read.table` ##
 
@@ -54,10 +54,10 @@ write.table(swiss, file = 'swiss.csv', sep = ',')
 > Example code:
 
 
-{% highlight r %}
+```r
 write.csv(swiss, file = 'swiss.csv')
 read.csv('swiss.csv')
-{% endhighlight %}
+```
 
 ## `head`, `names`, `str`, `summary` ##
 
@@ -71,13 +71,13 @@ median, frequency, and other basic statistics of each variable in the dataframe.
 > Example code:
 
 
-{% highlight r %}
+```r
 head(swiss)
 names(swiss)
 str(swiss)
 summary(swiss)
 class(swiss)
-{% endhighlight %}
+```
 
 ## `%>%` ##
 
@@ -90,7 +90,7 @@ do for some functions/commands (like `lm()`).
 > Example code:
 
 
-{% highlight r %}
+```r
 library(dplyr)
 ## This is the package that the pipe comes from
 library(magrittr) 
@@ -104,7 +104,7 @@ head(swiss)
 swiss %>% head
 swiss %>% head()
 swiss %>% head(.)
-{% endhighlight %}
+```
 
 ## `tbl_df` ##
 
@@ -114,14 +114,14 @@ dataframe prettier.
 > Example code:
 
 
-{% highlight r %}
+```r
 library(dplyr)
 ## These are the same
 tbl_df(ds)
 ds %>% tbl_df
 ds %>% tbl_df()
 ds %>% tbl_df(.)
-{% endhighlight %}
+```
 
 ## `select` ##
 
@@ -131,7 +131,7 @@ variables based on pattern or if it contains some letter.
 > Example code:
 
 
-{% highlight r %}
+```r
 library(dplyr)
 ## These are the same
 select(swiss, Education, Catholic, Fertility)
@@ -143,7 +143,7 @@ swiss %>% select(-Education, -Catholic)
 
 ## Select variables based on name or pattern
 swiss %>% select(starts_with('E'), contains('Fert'), matches('mort'))
-{% endhighlight %}
+```
 
 ## `rename` ##
 
@@ -155,7 +155,7 @@ is, as it only renames.
 > Example code:
 
 
-{% highlight r %}
+```r
 library(dplyr)
 ## These are the same
 rename(swiss, edu = Education)
@@ -167,7 +167,7 @@ swiss %>% rename(edu = Education, fert = Fertility)
 ## If you want to use select, but get the same functionality as rename, use the
 ## everything() function to select all other variables in the dataframe
 swiss %>% select(edu = Education, everything())
-{% endhighlight %}
+```
 
 ## `filter` ##
 
@@ -178,7 +178,7 @@ greater than, `==` equals, `>=` or `<=` greater/less than or equal to.
 > Example code:
 
 
-{% highlight r %}
+```r
 library(dplyr)
 ## These are the same
 filter(swiss, Catholic < 20, Examination == 15)
@@ -187,7 +187,7 @@ swiss %>% filter(., Catholic < 20, Examination == 15)
 
 ## For string/factor variables
 swiss %>% filter(X == 'Aigle')
-{% endhighlight %}
+```
 
 ## `mutate` ##
 
@@ -197,7 +197,7 @@ that assigns a value based on the condition.
 > Example code:
 
 
-{% highlight r %}
+```r
 library(dplyr)
 ## These are the same
 mutate(swiss, Infertile = ifelse(Fertility < 50, 'yes', 'no'))
@@ -206,7 +206,7 @@ swiss %>% mutate(., Infertile = ifelse(Fertility < 50, 'yes', 'no'))
 
 ## Or..
 swiss %>% mutate(Test = 'yes', Number = 10)
-{% endhighlight %}
+```
 
 ## `arrange` ##
 
@@ -216,7 +216,7 @@ given (eg. `arrange(var1, var2)` sorts first by `var1` than by `var2`).
 > Example code:
 
 
-{% highlight r %}
+```r
 library(dplyr)
 ## These are the same
 arrange(swiss, Education, Examination)
@@ -225,7 +225,7 @@ swiss %>% arrange(., Education, Examination)
 
 ## Or to do it descending
 swiss %>% arrange(desc(Education))
-{% endhighlight %}
+```
 
 ## `group_by` ##
 
@@ -236,12 +236,12 @@ following commands based on the grouping.
 > Example code:
 
 
-{% highlight r %}
+```r
 library(dplyr)
 swiss %>%
     mutate(EarlyDeath = ifelse(Infant.Mortality >= 50, 'yes', 'no')) %>%
     group_by(EarlyDeath)
-{% endhighlight %}
+```
 
 ## `summarise` ##
 
@@ -252,14 +252,14 @@ for sample size.  This function is best used with `group_by()`.
 > Example code:
 
 
-{% highlight r %}
+```r
 library(dplyr)
 swiss %>%
     mutate(Educated = ifelse(Education >= 50, 'yes', 'no')) %>%
     group_by(Educated) %>%
     str()
     summarise(mean = mean(Agriculture))
-{% endhighlight %}
+```
 
 
 ## `gather` ##
@@ -273,7 +273,7 @@ exclude (with a `-`) after the name of the two new variables.
 > Example code:
 
 
-{% highlight r %}
+```r
 library(dplyr)
 library(tidyr)
 ## These are the same
@@ -286,7 +286,7 @@ swiss %>% add_rownames() %>% gather(Measure, Value, -rowname)
 
 ## Or include only some variables
 swiss %>% gather(Measure, Value, Education, Fertility, Infant.Mortality)
-{% endhighlight %}
+```
 
 ## `spread` ##
 
@@ -296,19 +296,19 @@ dataframes.
 > Example code:
 
 
-{% highlight r %}
+```r
 library(dplyr)
 library(tidyr)
 swiss %>% 
     add_rownames() %>% 
     gather(Measure, Value, -rowname) %>% 
     spread(Measure, Value)
-{% endhighlight %}
+```
 
 # Combined example using (almost) all functions:
 
 
-{% highlight r %}
+```r
 swiss %>%
     add_rownames() %>% 
     tbl_df() %>% 
@@ -319,5 +319,5 @@ swiss %>%
     group_by(Measure, Religious) %>% 
     summarise(mean = mean(Value)) %>%
     spread(Measure, mean)
-{% endhighlight %}
+```
 

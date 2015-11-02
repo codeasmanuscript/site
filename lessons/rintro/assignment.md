@@ -42,16 +42,16 @@ object of the resulting matrix; choose your own object name!
 *alpha:*
 
 
-{% highlight text %}
+```
 ## Error in eval(expr, envir, enclos): could not find function "kable"
-{% endhighlight %}
+```
  
 *beta:* 
 
 
-{% highlight text %}
+```
 ## Error in eval(expr, envir, enclos): could not find function "kable"
-{% endhighlight %}
+```
 
 3. Load the `datasets` package and make a new dataframe with the `mtcars`
 dataset. What are the means of the columns? Hint: use a loop function. Subset
