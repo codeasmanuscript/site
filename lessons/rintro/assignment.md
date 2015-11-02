@@ -36,22 +36,26 @@ challenge.
     * The 5th element of `c`
     * All of elements of `c` that are greater than 50
 
-2. Use R to create the following two matrices and multiply them. Make a new
-object of the resulting matrix; choose your own object name!
+2. Use R to create the following two matrices (*without* the column names) and
+multiply them. Make a new object of the resulting matrix; choose your own object
+name!
 
 *alpha:*
 
 
-```
-## Error in kable_markdown(x = structure(c("7", "9", "12", "2", "4", "13": the table must have a header (column names)
-```
+| Col1 | Col2 | Col3 |
+|:----:|:----:|:----:|
+|  7   |  12  |  4   |
+|  9   |  2   |  13  |
  
 *beta:* 
 
 
-```
-## Error in kable_markdown(x = structure(c("1", "7", "12", "19", "2", "8", : the table must have a header (column names)
-```
+| Col1 | Col2 | Col3 | Col4 |
+|:----:|:----:|:----:|:----:|
+|  1   |  19  |  13  |  9   |
+|  7   |  2   |  20  |  14  |
+|  12  |  8   |  3   |  21  |
 
 3. Load the `datasets` package and make a new dataframe with the `mtcars`
 dataset. What are the means of the columns? Hint: use a loop function. Subset
