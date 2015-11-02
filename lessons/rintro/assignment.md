@@ -21,18 +21,14 @@ output: html_vignette
 
 ## Challenges for R basics
 
-Write up and complete all of these challenges in a file called `challenges.R`.
-To get more practice with Git, **add and commit** after completing each
-challenge.
+Write up and complete all of these challenges in a file called `challenges.R`. 
+Save this file in your `intror` folder on the `practice` repository. So the file
+location should look like: `your-name/intror/challenge.R`. To get more practice
+with Git, **add and commit** after completing each challenge.
 
-1. Create the following vectors in R:
-	
-    * a = 1 to 10
-    * b = 11 to 20
-
-    Use vector arithmetic to multiply these vectors and put the results into a
-    new variable `c`. Select subsets of `c` to identify the following:
-
+1. Create the following vectors in R: a = 1 to 10; b = 11 to 20. Then, use
+vector arithmetic to multiply these vectors and put the results into a new 
+variable `c`. Select subsets of `c` to identify the following:
     * The 5th element of `c`
     * All of elements of `c` that are greater than 50
 
@@ -40,27 +36,22 @@ challenge.
 multiply them. Make a new object of the resulting matrix; choose your own object
 name!
 
-*alpha:*
-
-
-| Col1 | Col2 | Col3 |
-|:----:|:----:|:----:|
-|  7   |  12  |  4   |
-|  9   |  2   |  13  |
- 
-*beta:* 
-
-
-| Col1 | Col2 | Col3 | Col4 |
-|:----:|:----:|:----:|:----:|
-|  1   |  19  |  13  |  9   |
-|  7   |  2   |  20  |  14  |
-|  12  |  8   |  3   |  21  |
+    
+    ```
+    [1] "alpha"
+         [,1] [,2] [,3]
+    [1,]    7   12    4
+    [2,]    9    2   13
+    [1] "beta"
+         [,1] [,2] [,3] [,4]
+    [1,]    1   19   13    9
+    [2,]    7    2   20   14
+    [3,]   12    8    3   21
+    ```
 
 3. Load the `datasets` package and make a new dataframe with the `mtcars`
 dataset. What are the means of the columns? Hint: use a loop function. Subset
 the `mtcars` dataset and make new vectors with:
-
     * The column mpg
     * The fourth column
     * The third and fifth row
