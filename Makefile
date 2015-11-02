@@ -12,7 +12,8 @@ test_local :
 
 ## update_site : Build the GitHub pages site
 update_site :
-	rsync -a --exclude='.git/' --exclude='.gitignore' ../workshops/ ../${site_repo}/
+	rsync -a --exclude='.git/' --exclude='.gitignore' \
+		--exclude='lessons/rplotting/' ../workshops/ ../${site_repo}/
 	./knitpost.R
 
 ## clean_dir   : Clean up left over files from updated website

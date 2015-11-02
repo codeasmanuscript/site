@@ -14,7 +14,6 @@ KnitPost <- function(input, outfile, base.url = '/') {
     knitr::opts_knit$set(base.url = base.url)
     knitr::opts_chunk$set(fig.path = '/lessons/images/',
                           collapse = TRUE)
-    knitr::render_jekyll()
     knitr::knit(input, outfile, envir = parent.frame())
     txt <- sub('^published: false', 'published: true',
                readLines(outfile))
