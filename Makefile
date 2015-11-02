@@ -18,6 +18,7 @@ update_site :
 ## clean_dir   : Clean up left over files from updated website
 clean_dir :
 	git clean -d -x -f
+##-------------------------------------------------------------------
 
 .PHONY : update_site test_local clean_dir
 
