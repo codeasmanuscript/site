@@ -23,7 +23,7 @@ version:          2.1.0
 github:
   repo:           https://github.com/codeasmanuscript
 
-lesson-list: [Git, IntroR, Plotting, Wrangling, Rmarkdown, Macros, ODS]
+lesson-list: [Git, IntroR, Wrangling, Plotting, Rmarkdown, Macros, ODS]
 category-list: [R, Git, Macros, ODS, Lessons]
 tag-list: [Lessons, Git, GitHub, Macros, ODS, Assignment, Slides, Cheatsheet]
 
