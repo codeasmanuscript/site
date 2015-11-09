@@ -36,14 +36,14 @@ etc).
 1. How to import/export your data
 2. How to view the structure of your data
 3. How to wrangle data into an analyzable format
+4. How to use basic statistics to summarize your data
 
 # Materials for this lesson:
 
 - [Slides](slides/)
 - [Cheatsheet](cheatsheet/)
 - [Assignment](assignment/)
-
-Other resources can be found [here](../resources/).
+- [Resources](../resources.)
 
 # Let's get wrangling, the basics
 
@@ -130,21 +130,14 @@ function (via the `magrittr` package), which works similar to how the Bash shell
 `|` pipe works (for those familiar with Bash, ie. those who use Mac or Linux).
 The command on the right-hand side takes the output from the command on the
 left-hand side, just like how a plumbing pipe works for water.  `tbl_df` makes
-the object into a `tbl` class, making printing of the output nicer.
+the object into a `tbl` class, making printing of the output nicer. The other
+nice thing about `dplyr` is that it can connect to SQL and other type of
+databases and is very fast at wrangling data, unlike base R. Check out the
+[resources page](../resources/) for links to more about this.
 
 
 ```r
 library(dplyr)
-## 
-## Attaching package: 'dplyr'
-## 
-## The following objects are masked from 'package:stats':
-## 
-##     filter, lag
-## 
-## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union
 library(tidyr)
 
 ## Compare
@@ -567,17 +560,19 @@ ds2 %>%
   gather(Measure, Value) %>%
   group_by(Measure) %>%
   summarise(mean = mean(Value),
+            sd = sd(Value),
+            median = median(Value),
             sampleSize = n())
-## Source: local data frame [6 x 3]
+## Source: local data frame [6 x 5]
 ## 
-##            Measure     mean sampleSize
-##             (fctr)    (dbl)      (int)
-## 1        Fertility 70.14255         47
-## 2      Agriculture 50.65957         47
-## 3      Examination 16.48936         47
-## 4        Education 10.97872         47
-## 5         Catholic 41.14383         47
-## 6 Infant.Mortality 19.94255         47
+##            Measure     mean        sd median sampleSize
+##             (fctr)    (dbl)     (dbl)  (dbl)      (int)
+## 1        Fertility 70.14255 12.491697  70.40         47
+## 2      Agriculture 50.65957 22.711218  54.10         47
+## 3      Examination 16.48936  7.977883  16.00         47
+## 4        Education 10.97872  9.615407   8.00         47
+## 5         Catholic 41.14383 41.704850  15.14         47
+## 6 Infant.Mortality 19.94255  2.912697  20.00         47
 ```
 
 ## Other useful and powerful examples
@@ -600,5 +595,26 @@ ds2 %>%
     group_by(Dep, Indep) %>% 
     do(lm(Yvalue ~ Xvalue + Infant.Mortality + Examination, data = .) %>% 
            broom::tidy())
-## Error in tidy.lm(.): could not find function "is"
+## Source: local data frame [16 x 7]
+## Groups: Dep, Indep [4]
+## 
+##          Dep       Indep             term    estimate   std.error
+##       (fctr)      (fctr)            (chr)       (dbl)       (dbl)
+## 1  Education   Fertility      (Intercept) 17.62086823  9.48591843
+## 2  Education   Fertility           Xvalue -0.34172055  0.11177490
+## 3  Education   Fertility Infant.Mortality  0.44332139  0.36837072
+## 4  Education   Fertility      Examination  0.51463767  0.16015339
+## 5  Education Agriculture      (Intercept) 12.75076261  9.86830392
+## 6  Education Agriculture           Xvalue -0.13540736  0.06135889
+## 7  Education Agriculture Infant.Mortality -0.21468852  0.35014860
+## 8  Education Agriculture      Examination  0.56818921  0.17549554
+## 9   Catholic   Fertility      (Intercept) 35.13701855 51.27597790
+## 10  Catholic   Fertility           Xvalue  0.39943317  0.60419739
+## 11  Catholic   Fertility Infant.Mortality  1.00336670  1.99122191
+## 12  Catholic   Fertility      Examination -2.54831847  0.86570652
+## 13  Catholic Agriculture      (Intercept) 48.62020731 51.22779001
+## 14  Catholic Agriculture           Xvalue  0.08447534  0.31852283
+## 15  Catholic Agriculture Infant.Mortality  1.69138478  1.81767192
+## 16  Catholic Agriculture      Examination -2.75852964  0.91102265
+## Variables not shown: statistic (dbl), p.value (dbl)
 ```
