@@ -13,7 +13,7 @@ test_local :
 ## update_site : Build the GitHub pages site
 update_site :
 	rsync -a --exclude='.git/' --exclude='.gitignore' \
-		--exclude='lessons/rplotting/' ../workshops/ ../${site_repo}/
+		../workshops/ ../${site_repo}/
 	./knitpost.R
 	./knitpost.R
 
