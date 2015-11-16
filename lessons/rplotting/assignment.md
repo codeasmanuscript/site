@@ -18,8 +18,6 @@ categories:
 
 # Assignment: Plotting with ggplot2 #
 
-**We will be using the `diamonds` dataframe included in `ggplot2` for all questions **
-
 Try each of these challenges, going from raw data to final plot. Create a file
 in the `practice` repo under `your-name/plotting` called `challenge.R`. The file
 location should look like `your-name/plotting/challenge.R`. To get more practice
@@ -33,8 +31,6 @@ dataset that comes with R.
 3. Change the above scatterplot to a histogram of carat, with the fill color of cut. 
 
 4. Change the binwidth of the histogram to 1
-
-** now to the `ggplot()` function **
 
 5. Use the `ggplot()` function to make an object called `b` with x=color and y=depth. 
 
