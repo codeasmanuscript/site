@@ -1,0 +1,69 @@
+---
+title: "Assignment: Plotting in R"
+author: Sarah Meister
+date: 2015-11-09
+published: true
+layout: page
+sidebar: false
+tag:
+    - Lessons
+    - Assignment
+    - Plotting
+    - R
+categories:
+    - Lessons
+    - Plotting
+    - R
+---
+
+# Assignment: Plotting with ggplot2 #
+
+**We will be using the `diamonds` dataframe included in `ggplot2` for all questions **
+
+Try each of these challenges, going from raw data to final plot. Create a file
+in the `practice` repo under `your-name/plotting` called `challenge.R`. The file
+location should look like `your-name/plotting/challenge.R`. To get more practice
+with Git, **add and commit** after completing each graph. Use the `diamonds`
+dataset that comes with R.
+
+1. Use the `qplot()` function to make a scatterplot with x=carat and y=price
+
+2. Now color the plot by the cut. 
+
+3. Change the above scatterplot to a histogram of carat, with the fill color of cut. 
+
+4. Change the binwidth of the histogram to 1
+
+** now to the `ggplot()` function **
+
+5. Use the `ggplot()` function to make an object called `b` with x=color and y=depth. 
+
+6. Make a boxplot out of `b`
+
+7. Add the following titles:
+    * Title: Depth and color of round cut diamonds
+    * x label: Diamond color, from J(worst) to D(best)
+    * y label: Depth (mm)
+    
+8. Create a `facet_wrap()` using the clarity attribute. Make 4 columns of facets (Hint: use `ncol`. Modifiy the title to say: Depth and color of round cut diamonds by clarity 
+
+9. Make a correlation heatmap of all the numeric/integer columns of the 
+diamonds dataset. Round the correlations to 3 digits. Use `%>%` piping (and the
+`+` from `ggplot2`) to solve this problem. HINT: the cor function turns your
+data into a matrix. Be sure to convert back into a dataframe.
+
+10. (Combining what was learned last week) Create a point plot of the means of 
+each numerical variable.  Have the variable on the y-axis and the means on the
+x-axis. Make sure to properly label the axes and plot. As a bonus/option, make
+the graph prettier.
+
+11. Expand on challenge 10, but split the means up by `price` (hint: make a new 
+factor variable from `price`) for dollars >2000 ('expensive') and <2000
+('inexpensive').  The graph should have two dots for each variable on the y-axis
+representing the means for each group of `price`. Make sure the labels on the
+plot make sense.
+
+12. Expand on challenge 11, but instead of just plotting the means, plot a line
+indicating the standard deviation (sd). This style of plot is known as a forest
+plot. Hint: Use `geom_errorbarh` for the line of upper and lower `sd`.
+
