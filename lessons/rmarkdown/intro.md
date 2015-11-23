@@ -1,6 +1,6 @@
 ---
 title: "Introduction: Report generation using R Markdown"
-published: false
+published: true
 author:
     - Luke W. Johnston
 date: 2015-10
