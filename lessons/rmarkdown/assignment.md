@@ -22,11 +22,17 @@ output:
 
 ## Challenges: Try these out yourself!
 
-Try to progressively add these challenges into an `.Rmd` file. First, create a
-template R Markdown file from RStudio. Push the final version to the GitHub
-repo, so we can look them over and make suggestions.
+Try to progressively add these challenges into an `.Rmd` file. First, create a 
+template R Markdown file from RStudio and save it in the `practice` repo, in
+`your-name/rmarkdown` folder and call it `challenge.Rmd`. Push the final version
+to the GitHub repo, so we can look them over and make suggestions. Use the
+`state.x77` dataset, making sure to it to a dataframe and add the rownames. The
+challenges aren't to get you to write out a whole report, merely to *practice*
+using R Markdown. Much of this assignment is also more exploratory and up to you
+in which direction to take for completing the challenges. Again, this is for
+*practice*.
 
-1. Create section 'Brief description' describing your assigned dataset. Use
+1. Create a section 'Brief description' describing your assigned dataset. Use
 inline R code to describe some basic statistics of the variables (eg. means,
 standard deviation, number of variables, and number of rows).
 
@@ -40,9 +46,11 @@ the figure caption.
 3. Create another section 'Tables' for some tables. Include the R code from
 `wrangling` workshop assignment into the `.Rmd` file.  Replace the old dataset
 with the new dataset name, as well as the variable names. Convert the `%>%` pipe
-chain to a table using `pander`. Use `captioner` for the table captions.
+chain to a table using `pander` or `kable`. Use `captioner` for the table captions.
 
 4. Generate both a Word file and an HTML file at the same time, using the YAML 
 metadata and the `render` command. Change the theme of the HTML document and
 number the sections, and include a table of contents (toc) into both the Word
 and HTML documents.
+
+5. This time, hide all the code from the final output document.
