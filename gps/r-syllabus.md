@@ -53,15 +53,15 @@ career (since R is free!).
 
 ## Schedule ##
 
-Lesson content can be found [here](/lessons/).  The workshop will
-follow the following sequence of topics on **Mondays from 3:00-6:00pm** at **65
-St. George St., room 201**:
+Lesson content can be found [here](/lessons/). The workshop is still in
+development at the moment, and the next sessions are still TBA.
+However, the workshop will likely cover the following topics:
 
-1. Git & GitHub -- Oct. 26th
-2. Basics of R -- Nov. 2nd
-3. Data wrangling -- Nov. 9th
-4. Visualization -- Nov. 16th
-5. Dynamic report generation -- Nov. 23rd
+1. Git & GitHub (maybe)
+2. Basics of R
+3. Data wrangling
+4. Visualization
+5. Dynamic report generation
 
 ## Intended audience: ##
 
